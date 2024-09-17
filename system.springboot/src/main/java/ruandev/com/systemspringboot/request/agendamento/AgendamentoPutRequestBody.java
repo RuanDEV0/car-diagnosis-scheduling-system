@@ -1,13 +1,10 @@
-package ruandev.com.systemspringboot.domain;
+package ruandev.com.systemspringboot.request.agendamento;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
-
 @Data
-@Builder
-public class Agendamento {
+public class AgendamentoPutRequestBody {
     private Long id;
     private LocalDate data;
 }
