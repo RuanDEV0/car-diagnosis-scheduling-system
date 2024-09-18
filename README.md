@@ -36,7 +36,7 @@ Um sistema de agendamento para diagnóstico de problemas de carros, permitindo q
 
 ## Uso
 
-Após iniciar o aplicativo, acesse `http://localhost:8080` em seu navegador para começar a agendar diagnósticos e gerenciar os carros.
+Após iniciar o aplicativo, acesse `http://localhost:8080` em seu navegador para começar interagir com a aplicação.
 
 ## Contribuição
 
