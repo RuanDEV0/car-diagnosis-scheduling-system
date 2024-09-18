@@ -17,7 +17,7 @@ import ruandev.com.systemspringboot.service.VeiculoService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("cadrasto")
+@RequestMapping("cadastro")
 public class SystemController {
     private final ClienteService clienteService;
     private final VeiculoService veiculoService;
