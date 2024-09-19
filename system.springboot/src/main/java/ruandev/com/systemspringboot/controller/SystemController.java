@@ -10,8 +10,11 @@ import ruandev.com.systemspringboot.domain.Agendamento;
 import ruandev.com.systemspringboot.domain.Cliente;
 import ruandev.com.systemspringboot.domain.Veiculo;
 import ruandev.com.systemspringboot.request.agendamento.AgendamentoPostRequestBody;
+import ruandev.com.systemspringboot.request.agendamento.AgendamentoPutRequestBody;
 import ruandev.com.systemspringboot.request.cliente.ClientePostRequestBody;
+import ruandev.com.systemspringboot.request.cliente.ClientePutRequestBody;
 import ruandev.com.systemspringboot.request.veiculo.VeiculoPostRequestBody;
+import ruandev.com.systemspringboot.request.veiculo.VeiculoPutRequestBody;
 import ruandev.com.systemspringboot.service.AgendamentoService;
 import ruandev.com.systemspringboot.service.ClienteService;
 import ruandev.com.systemspringboot.service.VeiculoService;
@@ -50,5 +53,21 @@ public class SystemController {
     @PostMapping(path = "/cadastro/agendamento")
     public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequestBody agendamentoPostRequestBody){
         return new ResponseEntity<>(agendamentoService.save(agendamentoPostRequestBody), HttpStatus.CREATED);
+    }
+    @PutMapping(path = "/cadastro/cliente")
+    public ResponseEntity<Void> replace(@RequestBody ClientePutRequestBody clientePutRequestBody){
+        clienteService.replace(clientePutRequestBody);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PutMapping(path = "/cadastro/agendamento")
+    public ResponseEntity<Void> replace(@RequestBody AgendamentoPutRequestBody agendamentoPutRequestBody){
+        agendamentoService.replace(agendamentoPutRequestBody);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PutMapping(path = "/cadastro/veiculo")
+    public ResponseEntity<Void> replace(@RequestBody VeiculoPutRequestBody veiculoPutRequestBody){
+        veiculoService.replace(veiculoPutRequestBody);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 }
