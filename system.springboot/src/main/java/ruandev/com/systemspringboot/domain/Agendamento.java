@@ -8,6 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.DialectOverride;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import ruandev.com.systemspringboot.auxiliar.StatusAgendamento;
 
 import java.time.LocalDate;
 
@@ -21,4 +26,6 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
+    private String status;
+    private Veiculo veiculo;
 }
