@@ -26,6 +26,4 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
-    private String status;
-    private Veiculo veiculo;
 }

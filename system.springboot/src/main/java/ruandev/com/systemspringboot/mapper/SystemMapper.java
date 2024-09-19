@@ -13,15 +13,15 @@ import ruandev.com.systemspringboot.request.veiculo.VeiculoPostRequestBody;
 import ruandev.com.systemspringboot.request.veiculo.VeiculoPutRequestBody;
 
 @Mapper
-public abstract class SystemMapper {
-    public static final SystemMapper INSTANCE = Mappers.getMapper(SystemMapper.class);
+public interface SystemMapper {
+    SystemMapper INSTANCE = Mappers.getMapper(SystemMapper.class);
 
-    public abstract Veiculo toVeiculo(VeiculoPostRequestBody veiculoPostRequestBody);
-    public abstract Veiculo toVeiculo(VeiculoPutRequestBody veiculoPutRequestBody);
+    Veiculo toVeiculo(VeiculoPostRequestBody veiculoPostRequestBody);
+    Veiculo toVeiculo(VeiculoPutRequestBody veiculoPutRequestBody);
 
-    public abstract Agendamento toAgendamento(AgendamentoPostRequestBody agendamentoPostRequestBody);
-    public abstract Agendamento toAgendamento(AgendamentoPutRequestBody agendamentoPutRequestBody);
+    Agendamento toAgendamento(AgendamentoPostRequestBody agendamentoPostRequestBody);
+    Agendamento toAgendamento(AgendamentoPutRequestBody agendamentoPutRequestBody);
 
-    public abstract Cliente toCliente(ClientePostRequestBody clientePostRequestBody);
-    public abstract Cliente toCliente(ClientePutRequestBody clientePutRequestBody);
+    Cliente toCliente(ClientePostRequestBody clientePostRequestBody);
+    Cliente toCliente(ClientePutRequestBody clientePutRequestBody);
 }
