@@ -13,15 +13,24 @@ import ruandev.com.systemspringboot.request.veiculo.VeiculoPostRequestBody;
 import ruandev.com.systemspringboot.request.veiculo.VeiculoPutRequestBody;
 
 @Mapper
-public interface SystemMapper {
-    SystemMapper INSTANCE = Mappers.getMapper(SystemMapper.class);
+public abstract class SystemMapper {
+    public static final SystemMapper INSTANCE = Mappers.getMapper(SystemMapper.class);
 
-    Veiculo toVeiculo(VeiculoPostRequestBody veiculoPostRequestBody);
-    Veiculo toVeiculo(VeiculoPutRequestBody veiculoPutRequestBody);
+    public Veiculo toVeiculo(VeiculoPostRequestBody veiculoPostRequestBody){
+        if(veiculoPostRequestBody == null){
+            return null;
+        }else{
+            Veiculo veiculo = Veiculo.builder().ano(veiculoPostRequestBody.getAno()).placa(veiculoPostRequestBody.getPlaca())
+                    .marca(veiculoPostRequestBody.getMarca()).modelo(veiculoPostRequestBody.getModelo())
+                    .build();
+            return veiculo;
+        }
+    }
+    public abstract Veiculo toVeiculo(VeiculoPutRequestBody veiculoPutRequestBody);
 
-    Agendamento toAgendamento(AgendamentoPostRequestBody agendamentoPostRequestBody);
-    Agendamento toAgendamento(AgendamentoPutRequestBody agendamentoPutRequestBody);
+    public abstract Agendamento toAgendamento(AgendamentoPostRequestBody agendamentoPostRequestBody);
+    public abstract Agendamento toAgendamento(AgendamentoPutRequestBody agendamentoPutRequestBody);
 
-    Cliente toCliente(ClientePostRequestBody clientePostRequestBody);
-    Cliente toCliente(ClientePutRequestBody clientePutRequestBody);
+    public abstract Cliente toCliente(ClientePostRequestBody clientePostRequestBody);
+    public abstract Cliente toCliente(ClientePutRequestBody clientePutRequestBody);
 }

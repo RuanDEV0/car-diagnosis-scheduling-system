@@ -24,8 +24,8 @@ public class AgendamentoService {
     public Agendamento findByIdOrThrowException(Long id){
         return repositoryAgendamento.findById(id).orElseThrow();
     }
-    public void deleteAll(){
-        repositoryAgendamento.deleteAll();
+    public void deleteById(long id){
+        repositoryAgendamento.deleteById(id);
     }
     public void replace(AgendamentoPutRequestBody agendamentoPutRequestBody){
         Agendamento savedAgendamento = findByIdOrThrowException(agendamentoPutRequestBody.getId());

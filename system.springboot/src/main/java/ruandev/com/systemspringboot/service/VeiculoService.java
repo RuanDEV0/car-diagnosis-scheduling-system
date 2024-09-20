@@ -23,8 +23,8 @@ public class VeiculoService {
     public Veiculo save(VeiculoPostRequestBody veiculoPostRequestBody){
         return repositoryVeiculo.save(SystemMapper.INSTANCE.toVeiculo(veiculoPostRequestBody));
     }
-    public void deleteAll(){
-        repositoryVeiculo.deleteAll();
+    public void deleteById(long id){
+        repositoryVeiculo.deleteById(id);
     }
     public Veiculo findByIdOrThrowException(Long id){
         return repositoryVeiculo.findById(id).orElseThrow();

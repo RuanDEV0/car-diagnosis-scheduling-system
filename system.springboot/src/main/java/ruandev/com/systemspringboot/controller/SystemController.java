@@ -70,4 +70,20 @@ public class SystemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
+    @DeleteMapping(path = "/clientes/{id}")
+    public ResponseEntity<Void> deleteCliente(@RequestParam long id){
+        clienteService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(path = "/veiculos/{id}")
+    public ResponseEntity<Void> deleteVeiculo(@RequestParam long id){
+        veiculoService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @DeleteMapping(path = "/agendamentos/{id}")
+    public ResponseEntity<Void> deleteAgendamento(@RequestParam long id){
+        agendamentoService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

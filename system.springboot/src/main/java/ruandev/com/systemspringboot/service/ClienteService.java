@@ -21,8 +21,8 @@ public class ClienteService {
     public Cliente save(ClientePostRequestBody clientePostRequestBody){
         return repositoryCliente.save(SystemMapper.INSTANCE.toCliente(clientePostRequestBody));
     }
-    public void deleteAll(){
-        repositoryCliente.deleteAll();
+    public void deleteById(long id){
+        repositoryCliente.deleteById(id);
     }
     public Cliente findByIdOrThrowException(Long id){
         return repositoryCliente.findById(id).orElseThrow();
