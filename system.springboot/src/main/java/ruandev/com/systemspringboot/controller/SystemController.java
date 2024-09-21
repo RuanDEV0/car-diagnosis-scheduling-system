@@ -41,6 +41,10 @@ public class SystemController {
     public ResponseEntity<Page<Agendamento>> listAgendamento(Pageable pageable) {
         return ResponseEntity.ok(agendamentoService.listAll(pageable));
     }
+    @GetMapping(path = "/agendamentos/buscar")
+    public ResponseEntity<Page<Agendamento>> listAgendamentoByStatus(@RequestParam String status, Pageable pageable){
+        return ResponseEntity.ok(agendamentoService.listByStatus(status, pageable));
+    }
     @PostMapping(path = "/cadastro/cliente")
     public ResponseEntity<Cliente> save(@RequestBody ClientePostRequestBody clientePostRequestBody){
         return new ResponseEntity<>(clienteService.save(clientePostRequestBody), HttpStatus.CREATED);

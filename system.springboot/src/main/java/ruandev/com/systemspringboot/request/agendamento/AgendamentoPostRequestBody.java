@@ -7,4 +7,6 @@ import java.time.LocalDate;
 @Data
 public class AgendamentoPostRequestBody {
     private LocalDate data;
+    private String status;
+    private Integer veiculoId;
 }
