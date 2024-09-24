@@ -25,7 +25,7 @@ public class ClienteService {
         repositoryCliente.deleteById(id);
     }
     public Cliente findByIdOrThrowException(Long id){
-        return repositoryCliente.findById(id).orElseThrow();
+        return repositoryCliente.findById(id).orElseThrow(() -> new RuntimeException("anime not found!"));
     }
     public void replace (ClientePutRequestBody clientePutRequestBody){
         Cliente savedCliente = findByIdOrThrowException(clientePutRequestBody.getId());

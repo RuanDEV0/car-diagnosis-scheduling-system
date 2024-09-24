@@ -27,9 +27,15 @@ public class SystemController {
     private final VeiculoService veiculoService;
     private final AgendamentoService agendamentoService;
 
+
     @GetMapping(path = "/clientes")
     public ResponseEntity<Page<Cliente>> listCliente(Pageable pageable) {
         return ResponseEntity.ok(clienteService.listAll(pageable));
+    }
+
+    @GetMapping(path = "/clientes/{id}")
+    public ResponseEntity<Cliente> clienteFindById(@PathVariable long id) {
+        return ResponseEntity.ok(clienteService.findByIdOrThrowException(id));
     }
 
     @GetMapping(path = "/veiculos")
@@ -37,56 +43,74 @@ public class SystemController {
         return ResponseEntity.ok(veiculoService.listAll(pageable));
     }
 
+    @GetMapping(path = "/veiculos/{id}")
+    public ResponseEntity<Veiculo> veiculoFindById(@PathVariable long id) {
+        return ResponseEntity.ok(veiculoService.findByIdOrThrowException(id));
+    }
+
     @GetMapping(path = "/agendamentos")
     public ResponseEntity<Page<Agendamento>> listAgendamento(Pageable pageable) {
         return ResponseEntity.ok(agendamentoService.listAll(pageable));
     }
+
+    @GetMapping(path = "/agendamentos/{id}")
+    public ResponseEntity<Agendamento> agendamentoFindById(@PathVariable long id) {
+        return ResponseEntity.ok(agendamentoService.findByIdOrThrowException(id));
+    }
+
     @GetMapping(path = "/agendamentos/buscar")
-    public ResponseEntity<Page<Agendamento>> listAgendamentoByStatus(@RequestParam String status, Pageable pageable){
+    public ResponseEntity<Page<Agendamento>> listAgendamentoByStatus(@RequestParam String status, Pageable pageable) {
         return ResponseEntity.ok(agendamentoService.listByStatus(status, pageable));
     }
+
     @PostMapping(path = "/cadastro/cliente")
-    public ResponseEntity<Cliente> save(@RequestBody ClientePostRequestBody clientePostRequestBody){
+    public ResponseEntity<Cliente> save(@RequestBody ClientePostRequestBody clientePostRequestBody) {
         return new ResponseEntity<>(clienteService.save(clientePostRequestBody), HttpStatus.CREATED);
     }
+
     @PostMapping(path = "/cadastro/veiculo")
-    public ResponseEntity<Veiculo> save(@RequestBody VeiculoPostRequestBody veiculoPostRequestBody){
+    public ResponseEntity<Veiculo> save(@RequestBody VeiculoPostRequestBody veiculoPostRequestBody) {
         return new ResponseEntity<>(veiculoService.save(veiculoPostRequestBody), HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/cadastro/agendamento")
-    public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequestBody agendamentoPostRequestBody){
+    public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequestBody agendamentoPostRequestBody) {
         return new ResponseEntity<>(agendamentoService.save(agendamentoPostRequestBody), HttpStatus.CREATED);
     }
+
     @PutMapping(path = "/cadastro/cliente")
-    public ResponseEntity<Void> replace(@RequestBody ClientePutRequestBody clientePutRequestBody){
+    public ResponseEntity<Void> replace(@RequestBody ClientePutRequestBody clientePutRequestBody) {
         clienteService.replace(clientePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @PutMapping(path = "/cadastro/agendamento")
-    public ResponseEntity<Void> replace(@RequestBody AgendamentoPutRequestBody agendamentoPutRequestBody){
+    public ResponseEntity<Void> replace(@RequestBody AgendamentoPutRequestBody agendamentoPutRequestBody) {
         agendamentoService.replace(agendamentoPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @PutMapping(path = "/cadastro/veiculo")
-    public ResponseEntity<Void> replace(@RequestBody VeiculoPutRequestBody veiculoPutRequestBody){
+    public ResponseEntity<Void> replace(@RequestBody VeiculoPutRequestBody veiculoPutRequestBody) {
         veiculoService.replace(veiculoPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
+
     @DeleteMapping(path = "/clientes/{id}")
-    public ResponseEntity<Void> deleteCliente(@RequestParam long id){
+    public ResponseEntity<Void> deleteCliente(@RequestParam long id) {
         clienteService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/veiculos/{id}")
-    public ResponseEntity<Void> deleteVeiculo(@RequestParam long id){
+    public ResponseEntity<Void> deleteVeiculo(@RequestParam long id) {
         veiculoService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @DeleteMapping(path = "/agendamentos/{id}")
-    public ResponseEntity<Void> deleteAgendamento(@RequestParam long id){
+    public ResponseEntity<Void> deleteAgendamento(@RequestParam long id) {
         agendamentoService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

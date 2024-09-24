@@ -27,7 +27,7 @@ public class VeiculoService {
         repositoryVeiculo.deleteById(id);
     }
     public Veiculo findByIdOrThrowException(Long id){
-        return repositoryVeiculo.findById(id).orElseThrow();
+        return repositoryVeiculo.findById(id).orElseThrow(() -> new RuntimeException("anime not found!"));
     }
     public void replace(VeiculoPutRequestBody veiculoPutRequestBody){
         Veiculo savedVeiculo = findByIdOrThrowException(veiculoPutRequestBody.getId());
