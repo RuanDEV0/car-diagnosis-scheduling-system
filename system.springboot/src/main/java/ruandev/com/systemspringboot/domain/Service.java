@@ -11,15 +11,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class Cliente {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String telefone;
-    private String email;
-
+    private String nome;
+    private String desc;
+    private double precoBase;
 }

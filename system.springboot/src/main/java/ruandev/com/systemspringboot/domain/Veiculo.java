@@ -18,8 +18,8 @@ public class Veiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String marca;
     private String modelo;
     private int ano;
-    private String placa;
+    private String nome;
+    private String km;
 }
