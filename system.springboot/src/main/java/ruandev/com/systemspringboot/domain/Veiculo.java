@@ -9,11 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Veiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +22,5 @@ public class Veiculo {
     private int ano;
     private String nome;
     private String km;
+    private String marca;
 }

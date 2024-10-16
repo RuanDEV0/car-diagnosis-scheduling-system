@@ -3,14 +3,13 @@ package ruandev.com.systemspringboot.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import ruandev.com.systemspringboot.auxiliar.StatusAgendamento;
 import ruandev.com.systemspringboot.domain.Agendamento;
 import ruandev.com.systemspringboot.mapper.SystemMapper;
 import ruandev.com.systemspringboot.repository.RepositoryAgendamento;
 import ruandev.com.systemspringboot.request.agendamento.AgendamentoPostRequestBody;
 import ruandev.com.systemspringboot.request.agendamento.AgendamentoPutRequestBody;
+import ruandev.com.systemspringboot.util.StatusType;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +24,7 @@ public class AgendamentoService {
         return repositoryAgendamento.findAll(pageable);
     }
     public Agendamento save(AgendamentoPostRequestBody agendamentoPostRequestBody){
-        agendamentoPostRequestBody.setStatus(StatusAgendamento.PENDENTE.name());
+        agendamentoPostRequestBody.setStatus(StatusType.PENDENTE);
         return repositoryAgendamento.save(SystemMapper.INSTANCE.toAgendamento(agendamentoPostRequestBody));
     }
     public Agendamento findByIdOrThrowException(Long id){
@@ -35,10 +34,10 @@ public class AgendamentoService {
         repositoryAgendamento.deleteById(id);
     }
     public void replace(AgendamentoPutRequestBody agendamentoPutRequestBody){
-        Agendamento savedAgendamento = findByIdOrThrowException(agendamentoPutRequestBody.getId());
+        Agendamento byIdOrThrowException = this.findByIdOrThrowException(agendamentoPutRequestBody.getId());
         Agendamento agendamento = SystemMapper.INSTANCE.toAgendamento(agendamentoPutRequestBody);
-        agendamento.setId(savedAgendamento.getId());
-        repositoryAgendamento.save(agendamento);
+        agendamento.setId(byIdOrThrowException.getId());
+        this.repositoryAgendamento.save(agendamento);
     }
 
 }

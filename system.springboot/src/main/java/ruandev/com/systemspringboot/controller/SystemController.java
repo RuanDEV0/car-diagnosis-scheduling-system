@@ -8,15 +8,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Agendamento;
 import ruandev.com.systemspringboot.domain.Cliente;
+import ruandev.com.systemspringboot.domain.Servico;
 import ruandev.com.systemspringboot.domain.Veiculo;
 import ruandev.com.systemspringboot.request.agendamento.AgendamentoPostRequestBody;
 import ruandev.com.systemspringboot.request.agendamento.AgendamentoPutRequestBody;
 import ruandev.com.systemspringboot.request.cliente.ClientePostRequestBody;
 import ruandev.com.systemspringboot.request.cliente.ClientePutRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
 import ruandev.com.systemspringboot.request.veiculo.VeiculoPostRequestBody;
 import ruandev.com.systemspringboot.request.veiculo.VeiculoPutRequestBody;
 import ruandev.com.systemspringboot.service.AgendamentoService;
 import ruandev.com.systemspringboot.service.ClienteService;
+import ruandev.com.systemspringboot.service.ServicoService;
 import ruandev.com.systemspringboot.service.VeiculoService;
 
 @RestController
@@ -26,6 +30,7 @@ public class SystemController {
     private final ClienteService clienteService;
     private final VeiculoService veiculoService;
     private final AgendamentoService agendamentoService;
+    private final ServicoService servicoService;
 
 
     @GetMapping(path = "/clientes")
@@ -62,7 +67,14 @@ public class SystemController {
     public ResponseEntity<Page<Agendamento>> listAgendamentoByStatus(@RequestParam String status, Pageable pageable) {
         return ResponseEntity.ok(agendamentoService.listByStatus(status, pageable));
     }
-
+    @GetMapping(path = "/servico")
+    public ResponseEntity<Page<Servico>> listServico(Pageable pageable){
+        return ResponseEntity.ok(servicoService.listAll(pageable));
+    }
+    @PostMapping(path = "/cadastro/servico")
+    public ResponseEntity<Servico> save(@RequestBody ServicoPostRequestBody servicoPostRequestBody){
+        return ResponseEntity.ok(servicoService.save(servicoPostRequestBody));
+    }
     @PostMapping(path = "/cadastro/cliente")
     public ResponseEntity<Cliente> save(@RequestBody ClientePostRequestBody clientePostRequestBody) {
         return new ResponseEntity<>(clienteService.save(clientePostRequestBody), HttpStatus.CREATED);
@@ -96,7 +108,17 @@ public class SystemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
+    @PutMapping(path = "/cadastro/service")
+    public ResponseEntity<Void> replace(@RequestBody ServicoPutRequestBody servicoPutRequestBody){
+        this.servicoService.replace(servicoPutRequestBody);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
+    @DeleteMapping(path = "/serv")
+    public ResponseEntity<Void> deleteServico(@RequestParam long id){
+        this.servicoService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
     @DeleteMapping(path = "/clientes/{id}")
     public ResponseEntity<Void> deleteCliente(@RequestParam long id) {
         clienteService.deleteById(id);
