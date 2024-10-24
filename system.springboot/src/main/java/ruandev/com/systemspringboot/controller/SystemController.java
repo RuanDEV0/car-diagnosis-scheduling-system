@@ -71,6 +71,10 @@ public class SystemController {
     public ResponseEntity<Page<Servico>> listServico(Pageable pageable){
         return ResponseEntity.ok(servicoService.listAll(pageable));
     }
+    @GetMapping(path = "/servico/{id}")
+    public ResponseEntity<Servico> servicoFindById(@PathVariable long id){
+        return ResponseEntity.ok(servicoService.findByIdOrThrowException(id));
+    }
     @PostMapping(path = "/cadastro/servico")
     public ResponseEntity<Servico> save(@RequestBody ServicoPostRequestBody servicoPostRequestBody){
         return ResponseEntity.ok(servicoService.save(servicoPostRequestBody));
@@ -114,9 +118,9 @@ public class SystemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping(path = "/serv")
+    @DeleteMapping(path = "/servico/{id}")
     public ResponseEntity<Void> deleteServico(@RequestParam long id){
-        this.servicoService.delete(id);
+        this.servicoService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @DeleteMapping(path = "/clientes/{id}")

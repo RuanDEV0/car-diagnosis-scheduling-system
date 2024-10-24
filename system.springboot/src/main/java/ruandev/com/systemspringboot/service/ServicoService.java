@@ -26,7 +26,7 @@ public class ServicoService {
                 .orElseThrow(() -> new RuntimeException("Service not found"));
     }
 
-    public void delete(Long id){
+    public void deleteById(Long id){
          this.repositoryService.deleteById(id);
     }
 

@@ -11,6 +11,8 @@ import ruandev.com.systemspringboot.request.agendamento.AgendamentoPostRequestBo
 import ruandev.com.systemspringboot.request.agendamento.AgendamentoPutRequestBody;
 import ruandev.com.systemspringboot.util.StatusType;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AgendamentoService {
@@ -39,5 +41,4 @@ public class AgendamentoService {
         agendamento.setId(byIdOrThrowException.getId());
         this.repositoryAgendamento.save(agendamento);
     }
-
 }
