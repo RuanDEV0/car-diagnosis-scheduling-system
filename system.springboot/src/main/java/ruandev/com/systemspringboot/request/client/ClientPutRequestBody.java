@@ -1,9 +1,9 @@
-package ruandev.com.systemspringboot.request.cliente;
+package ruandev.com.systemspringboot.request.client;
 
 import lombok.Data;
 
 @Data
-public class ClientePutRequestBody {
+public class ClientPutRequestBody {
     private Long id;
     private String name;
     private String telefone;

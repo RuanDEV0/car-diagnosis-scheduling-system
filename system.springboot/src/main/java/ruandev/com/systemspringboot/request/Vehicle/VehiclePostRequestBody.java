@@ -1,9 +1,9 @@
-package ruandev.com.systemspringboot.request.veiculo;
+package ruandev.com.systemspringboot.request.Vehicle;
 
 import lombok.Data;
 
 @Data
-public class VeiculoPostRequestBody {
+public class VehiclePostRequestBody {
     private String modelo;
     private int ano;
     private String km;

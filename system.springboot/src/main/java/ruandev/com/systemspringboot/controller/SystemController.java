@@ -6,138 +6,138 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ruandev.com.systemspringboot.domain.Agendamento;
-import ruandev.com.systemspringboot.domain.Cliente;
-import ruandev.com.systemspringboot.domain.Servico;
-import ruandev.com.systemspringboot.domain.Veiculo;
-import ruandev.com.systemspringboot.request.agendamento.AgendamentoPostRequestBody;
-import ruandev.com.systemspringboot.request.agendamento.AgendamentoPutRequestBody;
-import ruandev.com.systemspringboot.request.cliente.ClientePostRequestBody;
-import ruandev.com.systemspringboot.request.cliente.ClientePutRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
-import ruandev.com.systemspringboot.request.veiculo.VeiculoPostRequestBody;
-import ruandev.com.systemspringboot.request.veiculo.VeiculoPutRequestBody;
-import ruandev.com.systemspringboot.service.AgendamentoService;
-import ruandev.com.systemspringboot.service.ClienteService;
-import ruandev.com.systemspringboot.service.ServicoService;
-import ruandev.com.systemspringboot.service.VeiculoService;
+import ruandev.com.systemspringboot.domain.Scheduling;
+import ruandev.com.systemspringboot.domain.Client;
+import ruandev.com.systemspringboot.domain.Service;
+import ruandev.com.systemspringboot.domain.Vehicle;
+import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
+import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;
+import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
+import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
+import ruandev.com.systemspringboot.request.Vehicle.VehiclePostRequestBody;
+import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
+import ruandev.com.systemspringboot.service.SchedulingService;
+import ruandev.com.systemspringboot.service.ClientService;
+import ruandev.com.systemspringboot.service.ServiceServico;
+import ruandev.com.systemspringboot.service.VehicleService;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("oficina")
 public class SystemController {
-    private final ClienteService clienteService;
-    private final VeiculoService veiculoService;
-    private final AgendamentoService agendamentoService;
-    private final ServicoService servicoService;
+    private final ClientService clientService;
+    private final VehicleService vehicleService;
+    private final SchedulingService schedulingService;
+    private final ServiceServico serviceServico;
 
 
     @GetMapping(path = "/clientes")
-    public ResponseEntity<Page<Cliente>> listCliente(Pageable pageable) {
-        return ResponseEntity.ok(clienteService.listAll(pageable));
+    public ResponseEntity<Page<Client>> listCliente(Pageable pageable) {
+        return ResponseEntity.ok(clientService.listAll(pageable));
     }
 
     @GetMapping(path = "/clientes/{id}")
-    public ResponseEntity<Cliente> clienteFindById(@PathVariable long id) {
-        return ResponseEntity.ok(clienteService.findByIdOrThrowException(id));
+    public ResponseEntity<Client> clienteFindById(@PathVariable long id) {
+        return ResponseEntity.ok(clientService.findByIdOrThrowException(id));
     }
 
     @GetMapping(path = "/veiculos")
-    public ResponseEntity<Page<Veiculo>> listVeiculo(Pageable pageable) {
-        return ResponseEntity.ok(veiculoService.listAll(pageable));
+    public ResponseEntity<Page<Vehicle>> listVeiculo(Pageable pageable) {
+        return ResponseEntity.ok(vehicleService.listAll(pageable));
     }
 
     @GetMapping(path = "/veiculos/{id}")
-    public ResponseEntity<Veiculo> veiculoFindById(@PathVariable long id) {
-        return ResponseEntity.ok(veiculoService.findByIdOrThrowException(id));
+    public ResponseEntity<Vehicle> veiculoFindById(@PathVariable long id) {
+        return ResponseEntity.ok(vehicleService.findByIdOrThrowException(id));
     }
 
     @GetMapping(path = "/agendamentos")
-    public ResponseEntity<Page<Agendamento>> listAgendamento(Pageable pageable) {
-        return ResponseEntity.ok(agendamentoService.listAll(pageable));
+    public ResponseEntity<Page<Scheduling>> listAgendamento(Pageable pageable) {
+        return ResponseEntity.ok(schedulingService.listAll(pageable));
     }
 
     @GetMapping(path = "/agendamentos/{id}")
-    public ResponseEntity<Agendamento> agendamentoFindById(@PathVariable long id) {
-        return ResponseEntity.ok(agendamentoService.findByIdOrThrowException(id));
+    public ResponseEntity<Scheduling> agendamentoFindById(@PathVariable long id) {
+        return ResponseEntity.ok(schedulingService.findByIdOrThrowException(id));
     }
 
     @GetMapping(path = "/agendamentos/buscar")
-    public ResponseEntity<Page<Agendamento>> listAgendamentoByStatus(@RequestParam String status, Pageable pageable) {
-        return ResponseEntity.ok(agendamentoService.listByStatus(status, pageable));
+    public ResponseEntity<Page<Scheduling>> listAgendamentoByStatus(@RequestParam String status, Pageable pageable) {
+        return ResponseEntity.ok(schedulingService.listByStatus(status, pageable));
     }
     @GetMapping(path = "/servico")
-    public ResponseEntity<Page<Servico>> listServico(Pageable pageable){
-        return ResponseEntity.ok(servicoService.listAll(pageable));
+    public ResponseEntity<Page<Service>> listServico(Pageable pageable){
+        return ResponseEntity.ok(serviceServico.listAll(pageable));
     }
     @GetMapping(path = "/servico/{id}")
-    public ResponseEntity<Servico> servicoFindById(@PathVariable long id){
-        return ResponseEntity.ok(servicoService.findByIdOrThrowException(id));
+    public ResponseEntity<Service> servicoFindById(@PathVariable long id){
+        return ResponseEntity.ok(serviceServico.findByIdOrThrowException(id));
     }
     @PostMapping(path = "/cadastro/servico")
-    public ResponseEntity<Servico> save(@RequestBody ServicoPostRequestBody servicoPostRequestBody){
-        return ResponseEntity.ok(servicoService.save(servicoPostRequestBody));
+    public ResponseEntity<Service> save(@RequestBody ServicePostRequestBody servicePostRequestBody){
+        return ResponseEntity.ok(serviceServico.save(servicePostRequestBody));
     }
     @PostMapping(path = "/cadastro/cliente")
-    public ResponseEntity<Cliente> save(@RequestBody ClientePostRequestBody clientePostRequestBody) {
-        return new ResponseEntity<>(clienteService.save(clientePostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Client> save(@RequestBody ClientPostRequestBody clientPostRequestBody) {
+        return new ResponseEntity<>(clientService.save(clientPostRequestBody), HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/cadastro/veiculo")
-    public ResponseEntity<Veiculo> save(@RequestBody VeiculoPostRequestBody veiculoPostRequestBody) {
-        return new ResponseEntity<>(veiculoService.save(veiculoPostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Vehicle> save(@RequestBody VehiclePostRequestBody vehiclePostRequestBody) {
+        return new ResponseEntity<>(vehicleService.save(vehiclePostRequestBody), HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/cadastro/agendamento")
-    public ResponseEntity<Agendamento> save(@RequestBody AgendamentoPostRequestBody agendamentoPostRequestBody) {
-        return new ResponseEntity<>(agendamentoService.save(agendamentoPostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Scheduling> save(@RequestBody SchedulingPostRequestBody schedulingPostRequestBody) {
+        return new ResponseEntity<>(schedulingService.save(schedulingPostRequestBody), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/cadastro/cliente")
-    public ResponseEntity<Void> replace(@RequestBody ClientePutRequestBody clientePutRequestBody) {
-        clienteService.replace(clientePutRequestBody);
+    public ResponseEntity<Void> replace(@RequestBody ClientPutRequestBody clientPutRequestBody) {
+        clientService.replace(clientPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(path = "/cadastro/agendamento")
-    public ResponseEntity<Void> replace(@RequestBody AgendamentoPutRequestBody agendamentoPutRequestBody) {
-        agendamentoService.replace(agendamentoPutRequestBody);
+    public ResponseEntity<Void> replace(@RequestBody SchedulingPutRequestBody schedulingPutRequestBody) {
+        schedulingService.replace(schedulingPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(path = "/cadastro/veiculo")
-    public ResponseEntity<Void> replace(@RequestBody VeiculoPutRequestBody veiculoPutRequestBody) {
-        veiculoService.replace(veiculoPutRequestBody);
+    public ResponseEntity<Void> replace(@RequestBody VehiclePutRequestBody vehiclePutRequestBody) {
+        vehicleService.replace(vehiclePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
     @PutMapping(path = "/cadastro/service")
-    public ResponseEntity<Void> replace(@RequestBody ServicoPutRequestBody servicoPutRequestBody){
-        this.servicoService.replace(servicoPutRequestBody);
+    public ResponseEntity<Void> replace(@RequestBody ServicePutRequestBody servicePutRequestBody){
+        this.serviceServico.replace(servicePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/servico/{id}")
     public ResponseEntity<Void> deleteServico(@RequestParam long id){
-        this.servicoService.deleteById(id);
+        this.serviceServico.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @DeleteMapping(path = "/clientes/{id}")
     public ResponseEntity<Void> deleteCliente(@RequestParam long id) {
-        clienteService.deleteById(id);
+        clientService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/veiculos/{id}")
     public ResponseEntity<Void> deleteVeiculo(@RequestParam long id) {
-        veiculoService.deleteById(id);
+        vehicleService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/agendamentos/{id}")
     public ResponseEntity<Void> deleteAgendamento(@RequestParam long id) {
-        agendamentoService.deleteById(id);
+        schedulingService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

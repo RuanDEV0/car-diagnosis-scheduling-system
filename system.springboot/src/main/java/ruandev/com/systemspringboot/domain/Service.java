@@ -1,26 +1,23 @@
 package ruandev.com.systemspringboot.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Veiculo {
+@Table
+public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String modelo;
-    private int ano;
     private String nome;
-    private String km;
-    private String marca;
+    private String descricao;
+    private double precoBase;
+
 }
