@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class VehiclePutRequestBody {
     private Long id;
-    private String modelo;
-    private int ano;
-    private String nome;
+    private String model;
+    private String year;
+    private String name;
     private String km;
-    private String marca;
+    private String brand;
 }

@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class ServicePutRequestBody {
     private Long id;
-    private String nome;
-    private String desc;
-    private double precoBase;
+    private String name;
+    private String description;
+    private double valueBasic;
 }

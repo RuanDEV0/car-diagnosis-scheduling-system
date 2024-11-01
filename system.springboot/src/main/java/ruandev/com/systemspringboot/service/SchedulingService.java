@@ -25,7 +25,7 @@ public class SchedulingService {
     }
     public Scheduling save(SchedulingPostRequestBody schedulingPostRequestBody){
         schedulingPostRequestBody.setStatus(StatusType.PENDENTE);
-        return repositoryScheduling.save(SystemMapper.INSTANCE.toAgendamento(schedulingPostRequestBody));
+        return repositoryScheduling.save(SystemMapper.INSTANCE.toScheduling(schedulingPostRequestBody));
     }
     public Scheduling findByIdOrThrowException(Long id){
         return repositoryScheduling.findById(id).orElseThrow(()-> new RuntimeException("Agendamento not found"));
@@ -35,7 +35,7 @@ public class SchedulingService {
     }
     public void replace(SchedulingPutRequestBody schedulingPutRequestBody){
         Scheduling byIdOrThrowException = this.findByIdOrThrowException(schedulingPutRequestBody.getId());
-        Scheduling agendamento = SystemMapper.INSTANCE.toAgendamento(schedulingPutRequestBody);
+        Scheduling agendamento = SystemMapper.INSTANCE.toScheduling(schedulingPutRequestBody);
         agendamento.setId(byIdOrThrowException.getId());
         this.repositoryScheduling.save(agendamento);
     }

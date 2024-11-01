@@ -19,7 +19,7 @@ public class VehicleService {
         return repositoryVehicle.findAll(pageable);
     }
     public Vehicle save(VehiclePostRequestBody vehiclePostRequestBody){
-        return repositoryVehicle.save(SystemMapper.INSTANCE.toVeiculo(vehiclePostRequestBody));
+        return repositoryVehicle.save(SystemMapper.INSTANCE.toVehicle(vehiclePostRequestBody));
     }
     public void deleteById(long id){
         repositoryVehicle.deleteById(id);
@@ -29,7 +29,7 @@ public class VehicleService {
     }
     public void replace(VehiclePutRequestBody vehiclePutRequestBody){
         Vehicle savedVehicle = findByIdOrThrowException(vehiclePutRequestBody.getId());
-        Vehicle vehicle = SystemMapper.INSTANCE.toVeiculo(vehiclePutRequestBody);
+        Vehicle vehicle = SystemMapper.INSTANCE.toVehicle(vehiclePutRequestBody);
         vehicle.setId(savedVehicle.getId());
         repositoryVehicle.save(vehicle);
     }

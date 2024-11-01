@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class VehiclePostRequestBody {
-    private String modelo;
-    private int ano;
+    private String model;
+    private String year;
     private String km;
-    private String marca;
-    private String nome;
+    private String brand;
+    private String name;
 }

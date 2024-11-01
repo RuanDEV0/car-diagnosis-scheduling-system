@@ -11,13 +11,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table
+@Table(name = "tb_service")
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String descricao;
-    private double precoBase;
+    @Column(unique = true)
+    private String name;
+    @Column(unique = true)
+    private String description;
+    @Column(unique = true)
+    private double valueBasic;
 
 }

@@ -9,20 +9,24 @@ import org.hibernate.annotations.ColumnDefault;
 import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table
+@Table(name = "tb_shedulling")
 public class Scheduling {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
-    private Long idService;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Service> serviceList;
     private String status;
-    private Long veiculoId;
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Vehicle vehicle;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Client client;
 }

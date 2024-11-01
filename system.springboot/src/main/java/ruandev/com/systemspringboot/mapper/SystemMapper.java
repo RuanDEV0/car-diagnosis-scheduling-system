@@ -1,5 +1,6 @@
 package ruandev.com.systemspringboot.mapper;
 
+import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import ruandev.com.systemspringboot.domain.Scheduling;
@@ -19,15 +20,26 @@ import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
 public abstract class SystemMapper {
     public static final SystemMapper INSTANCE = Mappers.getMapper(SystemMapper.class);
 
-    public abstract Vehicle toVeiculo(VehiclePostRequestBody vehiclePostRequestBody);
-    public abstract Vehicle toVeiculo(VehiclePutRequestBody vehiclePutRequestBody);
+    public  Vehicle toVehicle(VehiclePostRequestBody vehiclePostRequestBody){
+        if(vehiclePostRequestBody == null){
+            return null;
+        }else{
+            return Vehicle.builder().nome(vehiclePostRequestBody.getNome())
+                    .km(vehiclePostRequestBody.getKm())
+                    .modelo(vehiclePostRequestBody.getModelo())
+                    .marca(vehiclePostRequestBody.getMarca())
+                    .ano(vehiclePostRequestBody.getAno())
+                    .build();
+        }
+    }
+    public abstract Vehicle toVehicle(VehiclePutRequestBody vehiclePutRequestBody);
 
-    public abstract Scheduling toAgendamento(SchedulingPostRequestBody schedulingPostRequestBody);
-    public abstract Scheduling toAgendamento(SchedulingPutRequestBody schedulingPutRequestBody);
+    public abstract Scheduling toScheduling(SchedulingPostRequestBody schedulingPostRequestBody);
+    public abstract Scheduling toScheduling(SchedulingPutRequestBody schedulingPutRequestBody);
 
-    public abstract Client toCliente(ClientPostRequestBody clientPostRequestBody);
-    public abstract Client toCliente(ClientPutRequestBody clientPutRequestBody);
+    public abstract Client toClient(ClientPostRequestBody clientPostRequestBody);
+    public abstract Client toClient(ClientPutRequestBody clientPutRequestBody);
 
-    public abstract Service toServico(ServicePostRequestBody servicePostRequestBody);
-    public abstract Service toServico(ServicePutRequestBody servicePutRequestBody);
+    public abstract Service toService(ServicePostRequestBody servicePostRequestBody);
+    public abstract Service toService(ServicePutRequestBody servicePutRequestBody);
 }

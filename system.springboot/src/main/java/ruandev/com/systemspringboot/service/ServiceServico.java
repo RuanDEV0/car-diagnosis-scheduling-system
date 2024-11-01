@@ -8,7 +8,6 @@ import ruandev.com.systemspringboot.mapper.SystemMapper;
 import ruandev.com.systemspringboot.repository.RepositoryService;
 import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
 import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
-import ruandev.com.systemspringboot.util.StatusType;
 
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class ServiceServico {
         return this.repositoryService.findAll(pageable);
     }
     public Service save(ServicePostRequestBody servicePostRequestBody){
-        return this.repositoryService.save(SystemMapper.INSTANCE.toServico(servicePostRequestBody));
+        return this.repositoryService.save(SystemMapper.INSTANCE.toService(servicePostRequestBody));
     }
 
     public Service findByIdOrThrowException(Long id){
@@ -32,7 +31,7 @@ public class ServiceServico {
 
     public void replace(ServicePutRequestBody servicePutRequestBody){
         Service byIdOrThrowException = this.findByIdOrThrowException(servicePutRequestBody.getId());
-        Service servico = SystemMapper.INSTANCE.toServico(servicePutRequestBody);
+        Service servico = SystemMapper.INSTANCE.toService(servicePutRequestBody);
         servico.setId(byIdOrThrowException.getId());
     }
 }

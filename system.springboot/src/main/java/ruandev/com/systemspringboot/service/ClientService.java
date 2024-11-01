@@ -18,7 +18,7 @@ public class ClientService {
         return repositoryClient.findAll(pageable);
     }
     public Client save(ClientPostRequestBody clientPostRequestBody){
-        return repositoryClient.save(SystemMapper.INSTANCE.toCliente(clientPostRequestBody));
+        return repositoryClient.save(SystemMapper.INSTANCE.toClient(clientPostRequestBody));
     }
     public void deleteById(long id){
         repositoryClient.deleteById(id);
@@ -28,7 +28,7 @@ public class ClientService {
     }
     public void replace (ClientPutRequestBody clientPutRequestBody){
         Client savedClient = findByIdOrThrowException(clientPutRequestBody.getId());
-        Client client = SystemMapper.INSTANCE.toCliente(clientPutRequestBody);
+        Client client = SystemMapper.INSTANCE.toClient(clientPutRequestBody);
         client.setId(savedClient.getId());
         repositoryClient.save(client);
     }
