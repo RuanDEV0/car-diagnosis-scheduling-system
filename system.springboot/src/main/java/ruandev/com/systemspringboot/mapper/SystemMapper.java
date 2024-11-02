@@ -20,18 +20,7 @@ import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
 public abstract class SystemMapper {
     public static final SystemMapper INSTANCE = Mappers.getMapper(SystemMapper.class);
 
-    public  Vehicle toVehicle(VehiclePostRequestBody vehiclePostRequestBody){
-        if(vehiclePostRequestBody == null){
-            return null;
-        }else{
-            return Vehicle.builder().nome(vehiclePostRequestBody.getNome())
-                    .km(vehiclePostRequestBody.getKm())
-                    .modelo(vehiclePostRequestBody.getModelo())
-                    .marca(vehiclePostRequestBody.getMarca())
-                    .ano(vehiclePostRequestBody.getAno())
-                    .build();
-        }
-    }
+    public  abstract Vehicle toVehicle(VehiclePostRequestBody vehiclePostRequestBod);
     public abstract Vehicle toVehicle(VehiclePutRequestBody vehiclePutRequestBody);
 
     public abstract Scheduling toScheduling(SchedulingPostRequestBody schedulingPostRequestBody);

@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class ClientPostRequestBody {
     private String name;
-    private String telefone;
+    private String phone;
     private String email;
 }

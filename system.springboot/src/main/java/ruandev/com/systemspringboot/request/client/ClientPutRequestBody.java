@@ -6,6 +6,6 @@ import lombok.Data;
 public class ClientPutRequestBody {
     private Long id;
     private String name;
-    private String telefone;
+    private String phone;
     private String email;
 }
