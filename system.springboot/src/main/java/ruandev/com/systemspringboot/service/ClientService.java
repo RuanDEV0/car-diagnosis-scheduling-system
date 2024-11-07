@@ -1,10 +1,12 @@
 package ruandev.com.systemspringboot.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ruandev.com.systemspringboot.domain.Client;
+import ruandev.com.systemspringboot.mapper.ClientMapper;
 import ruandev.com.systemspringboot.mapper.SystemMapper;
 import ruandev.com.systemspringboot.repository.RepositoryClient;
 import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
@@ -18,7 +20,7 @@ public class ClientService {
         return repositoryClient.findAll(pageable);
     }
     public Client save(ClientPostRequestBody clientPostRequestBody){
-        return repositoryClient.save(SystemMapper.INSTANCE.toClient(clientPostRequestBody));
+        return repositoryClient.save(ClientMapper.INSTANCE.toClient(clientPostRequestBody));
     }
     public void deleteById(long id){
         repositoryClient.deleteById(id);

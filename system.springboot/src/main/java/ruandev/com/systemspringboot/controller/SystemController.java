@@ -123,7 +123,7 @@ public class SystemController {
         this.serviceServico.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @DeleteMapping(path = "/clientes/{id}")
+    @DeleteMapping(path = "/clientes")
     public ResponseEntity<Void> deleteCliente(@RequestParam long id) {
         clientService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
