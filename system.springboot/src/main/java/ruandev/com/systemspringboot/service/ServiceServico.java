@@ -5,28 +5,28 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import ruandev.com.systemspringboot.domain.Service;
 import ruandev.com.systemspringboot.mapper.SystemMapper;
-import ruandev.com.systemspringboot.repository.RepositoryService;
+import ruandev.com.systemspringboot.repository.ServiceRepository;
 import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
 import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
 
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor
 public class ServiceServico {
-    private final RepositoryService repositoryService;
+    private final ServiceRepository serviceRepository;
     public Page<Service> listAll(Pageable pageable){
-        return this.repositoryService.findAll(pageable);
+        return this.serviceRepository.findAll(pageable);
     }
     public Service save(ServicePostRequestBody servicePostRequestBody){
-        return this.repositoryService.save(SystemMapper.INSTANCE.toService(servicePostRequestBody));
+        return this.serviceRepository.save(SystemMapper.INSTANCE.toService(servicePostRequestBody));
     }
 
     public Service findByIdOrThrowException(Long id){
-        return this.repositoryService.findById(id)
+        return this.serviceRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Service not found"));
     }
 
     public void deleteById(Long id){
-         this.repositoryService.deleteById(id);
+         this.serviceRepository.deleteById(id);
     }
 
     public void replace(ServicePutRequestBody servicePutRequestBody){

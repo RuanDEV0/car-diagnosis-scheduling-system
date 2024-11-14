@@ -8,7 +8,7 @@ import ruandev.com.systemspringboot.domain.Scheduling;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface RepositoryScheduling extends JpaRepository<Scheduling, Long > {
+public interface SchedulingRepository extends JpaRepository<Scheduling, Long > {
     Page<Scheduling> findByStatus(String status, Pageable pageable);
     List<Scheduling> findByData(LocalDate date);
 
