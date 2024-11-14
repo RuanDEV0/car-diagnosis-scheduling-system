@@ -20,7 +20,7 @@ import ruandev.com.systemspringboot.request.Vehicle.VehiclePostRequestBody;
 import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
 import ruandev.com.systemspringboot.service.SchedulingService;
 import ruandev.com.systemspringboot.service.ClientService;
-import ruandev.com.systemspringboot.service.ServiceServico;
+import ruandev.com.systemspringboot.service.ServicoService;
 import ruandev.com.systemspringboot.service.VehicleService;
 
 @RestController
@@ -30,7 +30,7 @@ public class SystemController {
     private final ClientService clientService;
     private final VehicleService vehicleService;
     private final SchedulingService schedulingService;
-    private final ServiceServico serviceServico;
+    private final ServicoService servicoService;
 
 
     @GetMapping(path = "/clientes")
@@ -69,15 +69,15 @@ public class SystemController {
     }
     @GetMapping(path = "/servico")
     public ResponseEntity<Page<Service>> listServico(Pageable pageable){
-        return ResponseEntity.ok(serviceServico.listAll(pageable));
+        return ResponseEntity.ok(servicoService.listAll(pageable));
     }
     @GetMapping(path = "/servico/{id}")
     public ResponseEntity<Service> servicoFindById(@PathVariable long id){
-        return ResponseEntity.ok(serviceServico.findByIdOrThrowException(id));
+        return ResponseEntity.ok(servicoService.findByIdOrThrowException(id));
     }
     @PostMapping(path = "/cadastro/servico")
     public ResponseEntity<Service> save(@RequestBody ServicePostRequestBody servicePostRequestBody){
-        return ResponseEntity.ok(serviceServico.save(servicePostRequestBody));
+        return ResponseEntity.ok(servicoService.save(servicePostRequestBody));
     }
     @PostMapping(path = "/cadastro/cliente")
     public ResponseEntity<Client> save(@RequestBody ClientPostRequestBody clientPostRequestBody) {
@@ -114,13 +114,13 @@ public class SystemController {
     }
     @PutMapping(path = "/cadastro/service")
     public ResponseEntity<Void> replace(@RequestBody ServicePutRequestBody servicePutRequestBody){
-        this.serviceServico.replace(servicePutRequestBody);
+        this.servicoService.replace(servicePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(path = "/servico/{id}")
     public ResponseEntity<Void> deleteServico(@RequestParam long id){
-        this.serviceServico.deleteById(id);
+        this.servicoService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @DeleteMapping(path = "/clientes")
