@@ -7,6 +7,6 @@ import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
 
 @Mapper(componentModel = "spring")
 public interface VehicleMapper {
-    public Vehicle toVehicle(VehiclePostRequestBody vehiclePostRequestBody);
-    public Vehicle toVehicle(VehiclePutRequestBody vehiclePutRequestBody);
+    Vehicle toVehicle(VehiclePostRequestBody vehiclePostRequestBody);
+    Vehicle toVehicle(VehiclePutRequestBody vehiclePutRequestBody);
 }
