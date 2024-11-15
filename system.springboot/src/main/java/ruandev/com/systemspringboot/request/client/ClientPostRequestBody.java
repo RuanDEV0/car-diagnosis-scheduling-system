@@ -1,8 +1,9 @@
 package ruandev.com.systemspringboot.request.client;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
+
+@Builder
 @Data
 public class ClientPostRequestBody {
     private String name;

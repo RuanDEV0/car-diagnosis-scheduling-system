@@ -1,25 +1,25 @@
 package ruandev.com.systemspringboot.controller;
-
+/*
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ruandev.com.systemspringboot.domain.Scheduling;
 import ruandev.com.systemspringboot.domain.Client;
+import ruandev.com.systemspringboot.domain.Scheduling;
 import ruandev.com.systemspringboot.domain.Service;
 import ruandev.com.systemspringboot.domain.Vehicle;
-import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
-import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;
-import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
-import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
 import ruandev.com.systemspringboot.request.Vehicle.VehiclePostRequestBody;
 import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
-import ruandev.com.systemspringboot.service.SchedulingService;
+import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
+import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;
+import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
+import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
 import ruandev.com.systemspringboot.service.ClientService;
+import ruandev.com.systemspringboot.service.SchedulingService;
 import ruandev.com.systemspringboot.service.ServicoService;
 import ruandev.com.systemspringboot.service.VehicleService;
 
@@ -141,3 +141,5 @@ public class SystemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
+
+*/

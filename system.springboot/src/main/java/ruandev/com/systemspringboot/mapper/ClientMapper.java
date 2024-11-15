@@ -1,17 +1,12 @@
 package ruandev.com.systemspringboot.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 import ruandev.com.systemspringboot.domain.Client;
 import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
 import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ClientMapper {
-    ClientMapper INSTANCE = Mappers.getMapper(ClientMapper.class);
-
-    Client toClient(ClientPostRequestBody clientPostRequestBody);
-
-    Client toClient(ClientPutRequestBody clientPutRequestBody);
+     Client toClient(ClientPostRequestBody clientPostRequestBody);
+     Client toClient(ClientPutRequestBody clientPutRequestBody);
 }

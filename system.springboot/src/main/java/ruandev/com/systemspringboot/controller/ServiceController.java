@@ -6,13 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ruandev.com.systemspringboot.domain.Client;
 import ruandev.com.systemspringboot.domain.Service;
-import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
-import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;
 import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
 import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
-import ruandev.com.systemspringboot.service.ClientService;
 import ruandev.com.systemspringboot.service.ServicoService;
 
 @RestController
