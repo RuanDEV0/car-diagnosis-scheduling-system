@@ -9,5 +9,5 @@ public class ServicePutRequestBody {
     private Long id;
     private String name;
     private String description;
-    private double valueBasic;
+    private Double valueBasic;
 }

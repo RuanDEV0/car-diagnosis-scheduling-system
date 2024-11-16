@@ -18,9 +18,8 @@ public class Service {
     private Long id;
     @Column(unique = true)
     private String name;
-    @Column(unique = true)
+    @Column(columnDefinition = "TEXT")
     private String description;
-    @Column(unique = true)
-    private double valueBasic;
+    private Double valueBasic;
 
 }

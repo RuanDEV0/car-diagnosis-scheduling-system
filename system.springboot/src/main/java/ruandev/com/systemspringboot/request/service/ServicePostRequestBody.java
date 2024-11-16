@@ -8,5 +8,5 @@ import lombok.Data;
 public class ServicePostRequestBody {
     private String name;
     private String description;
-    private double valueBasic;
+    private Double valueBasic;
 }
