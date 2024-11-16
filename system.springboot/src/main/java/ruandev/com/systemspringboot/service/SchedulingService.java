@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Scheduling;
-import ruandev.com.systemspringboot.mapper.SystemMapper;
 import ruandev.com.systemspringboot.repository.SchedulingRepository;
 import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
 import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;

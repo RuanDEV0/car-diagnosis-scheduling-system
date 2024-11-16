@@ -1,7 +1,6 @@
 package ruandev.com.systemspringboot.service;
 
 import lombok.RequiredArgsConstructor;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Client;
 import ruandev.com.systemspringboot.mapper.ClientMapper;
-import ruandev.com.systemspringboot.mapper.SystemMapper;
 import ruandev.com.systemspringboot.repository.ClientRepository;
 import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
 import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;

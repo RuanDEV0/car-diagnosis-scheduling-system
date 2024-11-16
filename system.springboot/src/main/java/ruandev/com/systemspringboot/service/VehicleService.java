@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Vehicle;
-import ruandev.com.systemspringboot.mapper.SystemMapper;
 import ruandev.com.systemspringboot.mapper.VehicleMapper;
 import ruandev.com.systemspringboot.repository.VehicleRepository;
 import ruandev.com.systemspringboot.request.Vehicle.VehiclePostRequestBody;
