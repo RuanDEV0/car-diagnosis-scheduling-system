@@ -1,5 +1,6 @@
 package ruandev.com.systemspringboot.exception;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
