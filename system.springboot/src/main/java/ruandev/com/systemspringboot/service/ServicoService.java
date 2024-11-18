@@ -1,43 +1,43 @@
 package ruandev.com.systemspringboot.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ruandev.com.systemspringboot.domain.Service;
-import ruandev.com.systemspringboot.mapper.ServiceMapper;
-import ruandev.com.systemspringboot.repository.ServiceRepository;
-import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
-
-@org.springframework.stereotype.Service
-@RequiredArgsConstructor
+import ruandev.com.systemspringboot.domain.Servico;
+import ruandev.com.systemspringboot.exception.BadRequestException;
+import ruandev.com.systemspringboot.mapper.ServicoMapper;
+import ruandev.com.systemspringboot.repository.ServicoRepository;
+import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
+@Service
 public class ServicoService {
-    private final ServiceRepository serviceRepository;
     @Autowired
-    private ServiceMapper serviceMapper;
+    private ServicoRepository servicoRepository;
+    @Autowired
+    private ServicoMapper servicoMapper;
     @Transactional(readOnly = true)
-    public Page<Service> listAll(Pageable pageable){
-        return this.serviceRepository.findAll(pageable);
+    public Page<Servico> listAll(Pageable pageable){
+        return this.servicoRepository.findAll(pageable);
     }
     @Transactional
-    public Service save(ServicePostRequestBody servicePostRequestBody){
-        return this.serviceRepository.save(serviceMapper.toService(servicePostRequestBody));
+    public Servico save(ServicoPostRequestBody servicoPostRequestBody){
+        return this.servicoRepository.save(servicoMapper.toServico(servicoPostRequestBody));
     }
 
-    public Service findByIdOrThrowException(Long id){
-        return this.serviceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Service not found"));
+    public Servico findByIdOrThrowBadRequestException(Long id){
+        return this.servicoRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Service not found"));
     }
 
     public void deleteById(Long id){
-         this.serviceRepository.deleteById(id);
+         this.servicoRepository.deleteById(id);
     }
 
-    public void replace(ServicePutRequestBody servicePutRequestBody){
-        Service byIdOrThrowException = this.findByIdOrThrowException(servicePutRequestBody.getId());
-        Service servico = serviceMapper.toService(servicePutRequestBody);
+    public void replace(ServicoPutRequestBody servicoPutRequestBody){
+        Servico byIdOrThrowException = this.findByIdOrThrowBadRequestException(servicoPutRequestBody.getId());
+        Servico servico = servicoMapper.toServico(servicoPutRequestBody);
         servico.setId(byIdOrThrowException.getId());
     }
 }

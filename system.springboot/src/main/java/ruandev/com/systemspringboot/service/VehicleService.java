@@ -7,15 +7,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Vehicle;
+import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.VehicleMapper;
 import ruandev.com.systemspringboot.repository.VehicleRepository;
 import ruandev.com.systemspringboot.request.Vehicle.VehiclePostRequestBody;
 import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
 
 @Service
-@RequiredArgsConstructor
 public class VehicleService {
-    private final VehicleRepository vehicleRepository;
+    @Autowired
+    private  VehicleRepository vehicleRepository;
     @Autowired
     private VehicleMapper vehicleMapper;
 
@@ -30,11 +31,11 @@ public class VehicleService {
     public void deleteById(long id){
         vehicleRepository.deleteById(id);
     }
-    public Vehicle findByIdOrThrowException(Long id){
-        return vehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("anime not found!"));
+    public Vehicle findByIdOrThrowBadRequestException(Long id){
+        return vehicleRepository.findById(id).orElseThrow(() -> new BadRequestException("vehicle not found!"));
     }
     public void replace(VehiclePutRequestBody vehiclePutRequestBody){
-        Vehicle savedVehicle = findByIdOrThrowException(vehiclePutRequestBody.getId());
+        Vehicle savedVehicle = findByIdOrThrowBadRequestException(vehiclePutRequestBody.getId());
         Vehicle vehicle = vehicleMapper.toVehicle(vehiclePutRequestBody);
         vehicle.setId(savedVehicle.getId());
         vehicleRepository.save(vehicle);

@@ -6,9 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ruandev.com.systemspringboot.domain.Service;
-import ruandev.com.systemspringboot.request.service.ServicePostRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicePutRequestBody;
+import ruandev.com.systemspringboot.domain.Servico;
+import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
+import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
 import ruandev.com.systemspringboot.service.ServicoService;
 
 @RestController
@@ -18,23 +18,23 @@ public class ServiceController {
     private ServicoService servicoService;
 
     @GetMapping
-    public ResponseEntity<Page<Service>> findAll(Pageable pegeable){
+    public ResponseEntity<Page<Servico>> findAll(Pageable pegeable){
         return ResponseEntity.ok(servicoService.listAll(pegeable));
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Service> findById(@PathVariable Long id){
-        return ResponseEntity.ok(servicoService.findByIdOrThrowException(id));
+    public ResponseEntity<Servico> findById(@PathVariable Long id){
+        return ResponseEntity.ok(servicoService.findByIdOrThrowBadRequestException(id));
     }
 
     @PostMapping
-    public ResponseEntity<Service> save(@RequestBody ServicePostRequestBody servicePostRequestBody){
-        return new ResponseEntity<>(servicoService.save(servicePostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Servico> save(@RequestBody ServicoPostRequestBody servicoPostRequestBody){
+        return new ResponseEntity<>(servicoService.save(servicoPostRequestBody), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody ServicePutRequestBody servicePutRequestBody){
-        servicoService.replace(servicePutRequestBody);
+    public ResponseEntity<Void> replace(@RequestBody ServicoPutRequestBody servicoPutRequestBody){
+        servicoService.replace(servicoPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

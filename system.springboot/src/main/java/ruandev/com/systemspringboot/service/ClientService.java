@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Client;
+import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.ClientMapper;
 import ruandev.com.systemspringboot.repository.ClientRepository;
 import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
@@ -31,11 +32,11 @@ public class ClientService {
     public void deleteById(long id){
         clientRepository.deleteById(id);
     }
-    public Client findByIdOrThrowException(Long id){
-        return clientRepository.findById(id).orElseThrow(() -> new RuntimeException("anime not found!"));
+    public Client findByIdOrThrowBadRequestException(Long id) {
+        return clientRepository.findById(id).orElseThrow(() -> new BadRequestException("client not found!"));
     }
     public void replace (ClientPutRequestBody clientPutRequestBody){
-        Client savedClient = findByIdOrThrowException(clientPutRequestBody.getId());
+        Client savedClient = findByIdOrThrowBadRequestException(clientPutRequestBody.getId());
         Client client = clientMapper.toClient(clientPutRequestBody);
         client.setId(savedClient.getId());
         clientRepository.save(client);

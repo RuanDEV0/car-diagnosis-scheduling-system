@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ServicePutRequestBody {
+public class ServicoPutRequestBody {
     private Long id;
     private String name;
     private String description;

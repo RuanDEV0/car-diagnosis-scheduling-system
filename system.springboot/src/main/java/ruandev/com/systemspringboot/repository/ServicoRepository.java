@@ -3,9 +3,9 @@ package ruandev.com.systemspringboot.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import ruandev.com.systemspringboot.domain.Service;
+import ruandev.com.systemspringboot.domain.Servico;
 
-public interface ServiceRepository extends JpaRepository<Service, Long> {
+public interface ServicoRepository extends JpaRepository<Servico, Long> {
     @Override
-    Page<Service> findAll(Pageable pageable);
+    Page<Servico> findAll(Pageable pageable);
 }

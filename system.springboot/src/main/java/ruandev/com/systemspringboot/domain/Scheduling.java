@@ -21,7 +21,7 @@ public class Scheduling {
     private Long id;
     private LocalDate data;
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Service> serviceList;
+    private List<Servico> serviceList;
     private String status;
     @ManyToOne(cascade = CascadeType.ALL)
     private Vehicle vehicle;
