@@ -1,6 +1,10 @@
 package ruandev.com.systemspringboot.domain;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,14 +21,12 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
     private String model;
-    @Column(unique = true, length = 4)
+    @Column(length = 4)
     private String year;
-    @Column(unique = true)
     private String name;
-    @Column(unique = true)
     private String km;
-    @Column(unique = true)
     private String brand;
+    @Column(length = 7, unique = true)
+    private String plate;
 }
