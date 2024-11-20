@@ -32,7 +32,7 @@ public class ServicoService {
     }
 
     public void deleteById(Long id){
-         this.servicoRepository.deleteById(id);
+        this.servicoRepository.deleteById(findByIdOrThrowBadRequestException(id).getId());
     }
 
     public void replace(ServicoPutRequestBody servicoPutRequestBody){

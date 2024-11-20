@@ -16,17 +16,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_service")
 public class Servico {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true)
     @NotEmpty(message = "name is empty")
     @NotNull(message = "name is null")
+    @Column(unique = true)
     private String name;
     @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "description is empty")
     @NotNull(message = "description is null")
     private String description;
-    @NotEmpty(message = "valueBasic is empty")
     @NotNull(message = "valueBasic is null")
     private Double valueBasic;
 

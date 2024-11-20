@@ -35,7 +35,6 @@ public class Scheduling {
 
     )
     private List<Servico> serviceList;
-    @ColumnDefault(value = "PENDENTE")
     private String status;
     @ManyToOne(cascade = CascadeType.ALL)
     private Vehicle vehicle;

@@ -1,5 +1,6 @@
 package ruandev.com.systemspringboot.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +29,7 @@ public class ServiceController {
     }
 
     @PostMapping
-    public ResponseEntity<Servico> save(@RequestBody ServicoPostRequestBody servicoPostRequestBody){
+    public ResponseEntity<Servico> save(@Valid @RequestBody ServicoPostRequestBody servicoPostRequestBody){
         return new ResponseEntity<>(servicoService.save(servicoPostRequestBody), HttpStatus.CREATED);
     }
 
