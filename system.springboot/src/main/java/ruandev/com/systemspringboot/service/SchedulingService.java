@@ -1,6 +1,5 @@
 package ruandev.com.systemspringboot.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,13 +22,10 @@ public class SchedulingService {
     @Autowired
     private SchedulingMapper schedulingMapper;
 
-    public Page<Scheduling> listByStatus(String status, Pageable pageable) {
+    public Page<Scheduling> listByStatus(StatusType status, Pageable pageable) {
         return schedulingRepository.findByStatus(status, pageable);
     }
 
-    public Page<Scheduling> listAll(Pageable pageable){
-        return schedulingRepository.findAll(pageable);
-    }
     @Transactional
     public Scheduling save(SchedulingPostRequestBody schedulingPostRequestBody){
         schedulingPostRequestBody.setStatus(StatusType.PENDENTE);
@@ -38,17 +34,18 @@ public class SchedulingService {
                     .save(schedulingMapper.toScheduling(schedulingPostRequestBody));
 
         }else{
-            throw new RuntimeException("Date is not Schedulling!");
+            throw new BadRequestException("Date is not Schedulling!");
         }
     }
-    public Scheduling findByIdOrThrowException(Long id){
+    public Scheduling findByIdOrThrowBadRequestException(Long id){
         return schedulingRepository.findById(id).orElseThrow(()-> new BadRequestException("scheduling not found"));
     }
     public void deleteById(long id){
-        schedulingRepository.deleteById(id);
+        schedulingRepository.deleteById(this.findByIdOrThrowBadRequestException(id).getId());
     }
+    @Transactional
     public void replace(SchedulingPutRequestBody schedulingPutRequestBody){
-        Scheduling byIdOrThrowException = this.findByIdOrThrowException(schedulingPutRequestBody.getId());
+        Scheduling byIdOrThrowException = this.findByIdOrThrowBadRequestException(schedulingPutRequestBody.getId());
         Scheduling agendamento = schedulingMapper.toScheduling(schedulingPutRequestBody);
         agendamento.setId(byIdOrThrowException.getId());
         this.schedulingRepository.save(agendamento);

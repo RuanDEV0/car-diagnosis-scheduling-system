@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Scheduling {
 
     )
     private List<Servico> serviceList;
-    private String status;
+    private StatusType status;
     @ManyToOne(cascade = CascadeType.ALL)
     private Vehicle vehicle;
     @NotNull(message = "client is null")
