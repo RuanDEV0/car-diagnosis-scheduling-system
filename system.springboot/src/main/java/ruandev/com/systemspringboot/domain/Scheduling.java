@@ -36,6 +36,7 @@ public class Scheduling {
 
     )
     private List<Servico> serviceList;
+    /*to alter type of field status*/
     private StatusType status;
     @ManyToOne(cascade = CascadeType.ALL)
     private Vehicle vehicle;
