@@ -11,6 +11,7 @@ import ruandev.com.systemspringboot.mapper.SchedulingMapper;
 import ruandev.com.systemspringboot.repository.SchedulingRepository;
 import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
 import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;
+import ruandev.com.systemspringboot.request.scheduling.SchedulingUpdateStatusDTO;
 import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
@@ -54,7 +55,8 @@ public class SchedulingService {
         return schedulingRepository.findByData(date).size() < 4;
     }
 
-    public void updateStatus(StatusType statusType, Long id){
-        schedulingRepository.updateByStatus(statusType, id);
+    public void updateStatus(SchedulingUpdateStatusDTO schedulingUpdateStatusDTO){
+        schedulingRepository.updateByStatus(schedulingUpdateStatusDTO.getStatus()
+                , schedulingUpdateStatusDTO.getIdScheduling());
     }
 }

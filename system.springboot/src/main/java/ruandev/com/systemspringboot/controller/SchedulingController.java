@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Scheduling;
 import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
 import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;
+import ruandev.com.systemspringboot.request.scheduling.SchedulingUpdateStatusDTO;
 import ruandev.com.systemspringboot.service.SchedulingService;
 import ruandev.com.systemspringboot.util.StatusType;
 
@@ -39,6 +40,13 @@ public class SchedulingController {
     public ResponseEntity<Void> replace(@Valid @RequestBody SchedulingPutRequestBody schedulingPutRequestBody) {
         schedulingService.replace(schedulingPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @PostMapping(value = "update-status")
+    public ResponseEntity<Void> updateStatus(@Valid SchedulingUpdateStatusDTO schedulingUpdateStatusDTO){
+        schedulingService.updateStatus(schedulingUpdateStatusDTO);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping
