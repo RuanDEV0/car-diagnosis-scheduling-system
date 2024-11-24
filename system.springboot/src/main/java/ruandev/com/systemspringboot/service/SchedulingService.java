@@ -53,4 +53,8 @@ public class SchedulingService {
     public boolean verificDateOfSchedulling(LocalDate date){
         return schedulingRepository.findByData(date).size() < 4;
     }
+
+    public void updateStatus(StatusType statusType, Long id){
+        schedulingRepository.updateByStatus(statusType, id);
+    }
 }
