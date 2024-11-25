@@ -1,6 +1,7 @@
 package ruandev.com.systemspringboot.request.client;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 
 @Builder

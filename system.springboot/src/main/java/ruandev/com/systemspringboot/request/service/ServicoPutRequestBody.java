@@ -8,6 +8,6 @@ import lombok.Data;
 public class ServicoPutRequestBody {
     private Long id;
     private String name;
-    private String description;
+    private String shortDescription;
     private Double valueBasic;
 }

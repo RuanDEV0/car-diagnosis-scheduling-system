@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class ServicoPostRequestBody {
     private String name;
-    private String description;
+    private String shortDescription;
     private Double valueBasic;
 }

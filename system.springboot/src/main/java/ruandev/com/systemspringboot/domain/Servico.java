@@ -25,7 +25,7 @@ public class Servico {
     @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "description is empty")
     @NotNull(message = "description is null")
-    private String description;
+    private String shortDescription;
     @NotNull(message = "valueBasic is null")
     private Double valueBasic;
 

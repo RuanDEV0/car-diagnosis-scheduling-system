@@ -1,8 +1,6 @@
 package ruandev.com.systemspringboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Servico;
@@ -11,6 +9,9 @@ import ruandev.com.systemspringboot.mapper.ServicoMapper;
 import ruandev.com.systemspringboot.repository.ServicoRepository;
 import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
 import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
+
+import java.util.List;
+
 @Service
 public class ServicoService {
     @Autowired
@@ -18,8 +19,8 @@ public class ServicoService {
     @Autowired
     private ServicoMapper servicoMapper;
     @Transactional(readOnly = true)
-    public Page<Servico> listAll(Pageable pageable){
-        return this.servicoRepository.findAll(pageable);
+    public List<Servico> listAll(){
+        return this.servicoRepository.findAll();
     }
     @Transactional
     public Servico save(ServicoPostRequestBody servicoPostRequestBody){
@@ -39,5 +40,6 @@ public class ServicoService {
         Servico byIdOrThrowException = this.findByIdOrThrowBadRequestException(servicoPutRequestBody.getId());
         Servico servico = servicoMapper.toServico(servicoPutRequestBody);
         servico.setId(byIdOrThrowException.getId());
+        servicoRepository.save(servico);
     }
 }
