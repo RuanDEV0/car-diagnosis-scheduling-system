@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Entity
@@ -34,7 +36,7 @@ public class Scheduling {
             inverseJoinColumns = @JoinColumn(name = "id_service")
 
     )
-    private List<Servico> serviceList;
+    private Set<Servico> serviceList = new HashSet<>();
     private StatusType status;
     @ManyToOne(cascade = CascadeType.ALL)
     private Vehicle vehicle;
