@@ -12,16 +12,13 @@ import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
 import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;
 import ruandev.com.systemspringboot.service.ClientService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/client")
 public class ClientController {
     @Autowired
     private ClientService clientService;
-
-    @GetMapping
-    public ResponseEntity<Page<Client>> findAll(Pageable pegeable){
-        return ResponseEntity.ok(clientService.listAll(pegeable));
-    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Client> findById(@PathVariable Long id){

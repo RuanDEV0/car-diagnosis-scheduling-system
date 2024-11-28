@@ -27,16 +27,22 @@ public class Scheduling {
     @NotEmpty(message = "date is empty")
     private LocalDate data;
     @NotEmpty(message = "services is empty")
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
             name = "service_scheduling",
             joinColumns = @JoinColumn(name = "id_scheduling"),
             inverseJoinColumns = @JoinColumn(name = "id_service")
 
     )
+<<<<<<< HEAD
     private Set<Servico> serviceList = new HashSet<>();
+=======
+    private Set<Servico> services = new HashSet<>();
+    /*to alter type of field status*/
+>>>>>>> implementation-layer-scheduling
     private StatusType status;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
+    @JoinColumn(name = "id_vehicle")
     private Vehicle vehicle;
     @NotEmpty(message = "client is empty")
     @ManyToOne(cascade = CascadeType.ALL)

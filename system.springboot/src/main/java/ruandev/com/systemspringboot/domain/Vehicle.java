@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity
 @Builder
@@ -33,4 +35,6 @@ public class Vehicle {
     @Column(length = 7, unique = true)
     @NotEmpty(message = "plate is empty")
     private String plate;
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.EAGER)
+    private List<Scheduling> schedulingList;
 }
