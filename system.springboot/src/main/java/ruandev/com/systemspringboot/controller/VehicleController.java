@@ -18,11 +18,6 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    @GetMapping
-    public ResponseEntity<Page<Vehicle>> findAll(Pageable pegeable){
-        return ResponseEntity.ok(vehicleService.listAll(pegeable));
-    }
-
     @GetMapping(value = "/{id}")
     public ResponseEntity<Vehicle> findById(@PathVariable Long id){
         return ResponseEntity.ok(vehicleService.findByIdOrThrowBadRequestException(id));

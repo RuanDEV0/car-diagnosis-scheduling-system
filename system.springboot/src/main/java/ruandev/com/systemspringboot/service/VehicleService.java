@@ -19,16 +19,12 @@ public class VehicleService {
     @Autowired
     private VehicleMapper vehicleMapper;
 
-    @Transactional(readOnly = true)
-    public Page<Vehicle> listAll(Pageable pageable){
-        return vehicleRepository.findAll(pageable);
-    }
     @Transactional
     public Vehicle save(VehiclePostRequestBody vehiclePostRequestBody){
         return vehicleRepository.save(vehicleMapper.toVehicle(vehiclePostRequestBody));
     }
     public void deleteById(long id){
-        vehicleRepository.deleteById(id);
+        vehicleRepository.deleteById(findByIdOrThrowBadRequestException(id).getId());
     }
     public Vehicle findByIdOrThrowBadRequestException(Long id){
         return vehicleRepository.findById(id).orElseThrow(() -> new BadRequestException("vehicle not found!"));
