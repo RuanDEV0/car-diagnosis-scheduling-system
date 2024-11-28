@@ -11,7 +11,9 @@ import org.hibernate.annotations.ColumnDefault;
 import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Entity
@@ -23,22 +25,21 @@ public class Scheduling {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "date is null")
     @NotEmpty(message = "date is empty")
     private LocalDate data;
-    @NotNull(message = "services is null")
     @NotEmpty(message = "services is empty")
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
             name = "service_scheduling",
             joinColumns = @JoinColumn(name = "id_scheduling"),
             inverseJoinColumns = @JoinColumn(name = "id_service")
 
     )
-    private List<Servico> serviceList;
+    private Set<Servico> services = new HashSet<>();
     /*to alter type of field status*/
     private StatusType status;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
+    @JoinColumn(name = "id_vehicle")
     private Vehicle vehicle;
     @NotNull(message = "client is null")
     @NotEmpty(message = "client is empty")

@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Builder
 @AllArgsConstructor
@@ -19,14 +22,13 @@ public class Servico {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty(message = "name is empty")
-    @NotNull(message = "name is null")
     @Column(unique = true)
     private String name;
     @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "description is empty")
-    @NotNull(message = "description is null")
     private String description;
-    @NotNull(message = "valueBasic is null")
+    @NotEmpty(message = "valueBasic is empty")
     private Double valueBasic;
-
+    @ManyToMany(mappedBy = "services", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Scheduling> schedulings = new HashSet<>();
 }
