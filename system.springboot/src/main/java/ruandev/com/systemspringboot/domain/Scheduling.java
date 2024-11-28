@@ -24,10 +24,8 @@ public class Scheduling {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "date is null")
     @NotEmpty(message = "date is empty")
     private LocalDate data;
-    @NotNull(message = "services is null")
     @NotEmpty(message = "services is empty")
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -40,7 +38,6 @@ public class Scheduling {
     private StatusType status;
     @ManyToOne(cascade = CascadeType.ALL)
     private Vehicle vehicle;
-    @NotNull(message = "client is null")
     @NotEmpty(message = "client is empty")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_client")

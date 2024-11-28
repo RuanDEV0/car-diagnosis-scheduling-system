@@ -19,14 +19,12 @@ public class Servico {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty(message = "name is empty")
-    @NotNull(message = "name is null")
     @Column(unique = true)
     private String name;
     @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "description is empty")
-    @NotNull(message = "description is null")
     private String shortDescription;
-    @NotNull(message = "valueBasic is null")
+    @NotEmpty(message = "valueBasic is empty")
     private Double valueBasic;
 
 }

@@ -14,11 +14,9 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "name is null")
     @NotEmpty(message = "name is empty")
     private String name;
     @Column(unique = true)
-    @NotNull(message = "phone is null")
     @NotEmpty(message = "phone is empty")
     private String phone;
     @Column(unique = true)
