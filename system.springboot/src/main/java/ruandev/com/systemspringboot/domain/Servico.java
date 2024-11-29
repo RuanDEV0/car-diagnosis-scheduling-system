@@ -26,11 +26,8 @@ public class Servico {
     private String name;
     @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "description is empty")
-<<<<<<< HEAD
     private String shortDescription;
-=======
     private String description;
->>>>>>> implementation-layer-scheduling
     @NotEmpty(message = "valueBasic is empty")
     private Double valueBasic;
     @ManyToMany(mappedBy = "services", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @Data
@@ -21,4 +23,6 @@ public class Client {
     private String phone;
     @Column(unique = true)
     private String email;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Scheduling> schedulingList;
 }

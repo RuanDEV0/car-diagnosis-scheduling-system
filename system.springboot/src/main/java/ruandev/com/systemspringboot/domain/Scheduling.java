@@ -34,12 +34,8 @@ public class Scheduling {
             inverseJoinColumns = @JoinColumn(name = "id_service")
 
     )
-<<<<<<< HEAD
-    private Set<Servico> serviceList = new HashSet<>();
-=======
     private Set<Servico> services = new HashSet<>();
     /*to alter type of field status*/
->>>>>>> implementation-layer-scheduling
     private StatusType status;
     @ManyToOne()
     @JoinColumn(name = "id_vehicle")
