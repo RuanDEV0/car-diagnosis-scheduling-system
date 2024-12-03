@@ -1,6 +1,8 @@
 package ruandev.com.systemspringboot.handler;
 
 import io.micrometer.common.lang.Nullable;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -18,6 +20,7 @@ import ruandev.com.systemspringboot.exception.ValidationExceptionDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
@@ -32,6 +35,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
                 .timestamp(LocalDateTime.now())
                 .build(), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ValidationExceptionDetails> handlerConstraintViolationException(ConstraintViolationException constraintViolationException){
+        return new ResponseEntity<>(ValidationExceptionDetails.builder()
+                .details(constraintViolationException.getMessage())
+                .fields(constraintViolationException.getConstraintViolations().stream().toList().toString())
+                .timestamp(LocalDateTime.now())
+                .developerMessage(constraintViolationException.getClass().getName())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .title("ValidatinExceptionDetails, check the documentation!")
+                .fieldsMessage(constraintViolationException.getLocalizedMessage())
+                .build(), HttpStatus.BAD_REQUEST);
+    }
+
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body
             , HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
