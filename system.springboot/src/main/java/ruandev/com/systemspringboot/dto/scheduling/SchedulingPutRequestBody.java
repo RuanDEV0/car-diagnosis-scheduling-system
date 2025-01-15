@@ -1,4 +1,4 @@
-package ruandev.com.systemspringboot.request.scheduling;
+package ruandev.com.systemspringboot.dto.scheduling;
 
 import lombok.Data;
 import ruandev.com.systemspringboot.util.StatusType;

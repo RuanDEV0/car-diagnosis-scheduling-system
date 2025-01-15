@@ -2,8 +2,8 @@ package ruandev.com.systemspringboot.mapper;
 
 import org.mapstruct.Mapper;
 import ruandev.com.systemspringboot.domain.Scheduling;
-import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
-import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPostRequestBody;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPutRequestBody;
 
 @Mapper(componentModel = "spring")
 public interface SchedulingMapper {

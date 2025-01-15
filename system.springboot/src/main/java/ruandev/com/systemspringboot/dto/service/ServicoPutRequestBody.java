@@ -1,4 +1,4 @@
-package ruandev.com.systemspringboot.request.service;
+package ruandev.com.systemspringboot.dto.service;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,4 +10,5 @@ public class ServicoPutRequestBody {
     private String name;
     private String shortDescription;
     private Double valueBasic;
+    private String description;
 }

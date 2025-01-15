@@ -1,16 +1,14 @@
 package ruandev.com.systemspringboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Vehicle;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.VehicleMapper;
 import ruandev.com.systemspringboot.repository.VehicleRepository;
-import ruandev.com.systemspringboot.request.Vehicle.VehiclePostRequestBody;
-import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
+import ruandev.com.systemspringboot.dto.Vehicle.VehiclePostRequestBody;
+import ruandev.com.systemspringboot.dto.Vehicle.VehiclePutRequestBody;
 
 @Service
 public class VehicleService {

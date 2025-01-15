@@ -1,4 +1,4 @@
-package ruandev.com.systemspringboot.request.scheduling;
+package ruandev.com.systemspringboot.dto.scheduling;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SchedulingPostRequestBody {
-    private Long idService;
+    private Long id;
     private LocalDate data;
     private StatusType status;
     private Integer veiculoId;

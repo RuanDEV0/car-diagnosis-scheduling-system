@@ -2,8 +2,8 @@ package ruandev.com.systemspringboot.mapper;
 
 import org.mapstruct.Mapper;
 import ruandev.com.systemspringboot.domain.Servico;
-import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
+import ruandev.com.systemspringboot.dto.service.ServicoPostRequestBody;
+import ruandev.com.systemspringboot.dto.service.ServicoPutRequestBody;
 
 @Mapper(componentModel = "spring")
 public interface ServicoMapper {

@@ -7,8 +7,8 @@ import ruandev.com.systemspringboot.domain.Servico;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.ServicoMapper;
 import ruandev.com.systemspringboot.repository.ServicoRepository;
-import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
+import ruandev.com.systemspringboot.dto.service.ServicoPostRequestBody;
+import ruandev.com.systemspringboot.dto.service.ServicoPutRequestBody;
 
 import java.util.List;
 

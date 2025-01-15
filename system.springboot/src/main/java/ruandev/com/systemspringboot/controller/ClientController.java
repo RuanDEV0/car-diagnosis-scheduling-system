@@ -2,17 +2,13 @@ package ruandev.com.systemspringboot.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Client;
-import ruandev.com.systemspringboot.request.client.ClientPostRequestBody;
-import ruandev.com.systemspringboot.request.client.ClientPutRequestBody;
+import ruandev.com.systemspringboot.dto.client.ClientPostDto;
+import ruandev.com.systemspringboot.dto.client.ClientPutDto;
 import ruandev.com.systemspringboot.service.ClientService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/client")
@@ -26,13 +22,13 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Client> save(@Valid @RequestBody ClientPostRequestBody clientPostRequestBody){
-        return new ResponseEntity<>(clientService.save(clientPostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Client> save(@Valid @RequestBody ClientPostDto clientPostDto){
+        return new ResponseEntity<>(clientService.save(clientPostDto), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody ClientPutRequestBody clientPutRequestBody){
-        clientService.replace(clientPutRequestBody);
+    public ResponseEntity<Void> replace(@RequestBody ClientPutDto clientPutDto){
+        clientService.replace(clientPutDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

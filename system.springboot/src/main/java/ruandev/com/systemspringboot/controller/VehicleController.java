@@ -2,14 +2,12 @@ package ruandev.com.systemspringboot.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Vehicle;
-import ruandev.com.systemspringboot.request.Vehicle.VehiclePostRequestBody;
-import ruandev.com.systemspringboot.request.Vehicle.VehiclePutRequestBody;
+import ruandev.com.systemspringboot.dto.Vehicle.VehiclePostRequestBody;
+import ruandev.com.systemspringboot.dto.Vehicle.VehiclePutRequestBody;
 import ruandev.com.systemspringboot.service.VehicleService;
 
 @RestController

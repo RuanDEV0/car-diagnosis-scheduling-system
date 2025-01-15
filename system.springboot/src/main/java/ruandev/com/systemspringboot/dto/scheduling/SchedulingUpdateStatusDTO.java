@@ -1,4 +1,4 @@
-package ruandev.com.systemspringboot.request.scheduling;
+package ruandev.com.systemspringboot.dto.scheduling;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

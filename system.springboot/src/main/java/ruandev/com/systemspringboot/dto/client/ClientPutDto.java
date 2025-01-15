@@ -1,11 +1,11 @@
-package ruandev.com.systemspringboot.request.client;
+package ruandev.com.systemspringboot.dto.client;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.Builder;
 
-@Data
 @Builder
-public class ClientPutRequestBody {
+@Data
+public class ClientPutDto {
     private Long id;
     private String name;
     private String phone;

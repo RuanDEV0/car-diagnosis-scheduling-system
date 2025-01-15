@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Servico;
-import ruandev.com.systemspringboot.request.service.ServicoPostRequestBody;
-import ruandev.com.systemspringboot.request.service.ServicoPutRequestBody;
+import ruandev.com.systemspringboot.dto.service.ServicoPostRequestBody;
+import ruandev.com.systemspringboot.dto.service.ServicoPutRequestBody;
 import ruandev.com.systemspringboot.service.ServicoService;
 
 import java.util.List;

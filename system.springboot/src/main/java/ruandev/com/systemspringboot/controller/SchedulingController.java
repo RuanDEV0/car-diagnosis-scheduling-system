@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Scheduling;
-import ruandev.com.systemspringboot.request.scheduling.SchedulingPostRequestBody;
-import ruandev.com.systemspringboot.request.scheduling.SchedulingPutRequestBody;
-import ruandev.com.systemspringboot.request.scheduling.SchedulingUpdateStatusDTO;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPostRequestBody;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPutRequestBody;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingUpdateStatusDTO;
 import ruandev.com.systemspringboot.service.SchedulingService;
 import ruandev.com.systemspringboot.util.StatusType;
 

@@ -1,4 +1,4 @@
-package ruandev.com.systemspringboot.request.Vehicle;
+package ruandev.com.systemspringboot.dto.Vehicle;
 
 import lombok.Builder;
 import lombok.Data;
@@ -12,4 +12,5 @@ public class VehiclePutRequestBody {
     private String name;
     private String km;
     private String brand;
+    private String plate;
 }
