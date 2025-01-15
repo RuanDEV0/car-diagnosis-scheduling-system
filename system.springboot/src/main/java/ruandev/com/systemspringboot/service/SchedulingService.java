@@ -9,9 +9,9 @@ import ruandev.com.systemspringboot.domain.Scheduling;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.SchedulingMapper;
 import ruandev.com.systemspringboot.repository.SchedulingRepository;
-import ruandev.com.systemspringboot.dto.scheduling.SchedulingPostRequestBody;
-import ruandev.com.systemspringboot.dto.scheduling.SchedulingPutRequestBody;
-import ruandev.com.systemspringboot.dto.scheduling.SchedulingUpdateStatusDTO;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPostDto;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPutDto;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingUpdateStatusDto;
 import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
@@ -28,11 +28,11 @@ public class SchedulingService {
     }
 
     @Transactional
-    public Scheduling save(SchedulingPostRequestBody schedulingPostRequestBody){
-        schedulingPostRequestBody.setStatus(StatusType.PENDENTE);
-        if(verificDateOfSchedulling(schedulingPostRequestBody.getData())){
+    public Scheduling save(SchedulingPostDto schedulingPostDto){
+        schedulingPostDto.setStatus(StatusType.PENDENTE);
+        if(verificDateOfSchedulling(schedulingPostDto.getData())){
             return schedulingRepository
-                    .save(schedulingMapper.toScheduling(schedulingPostRequestBody));
+                    .save(schedulingMapper.toScheduling(schedulingPostDto));
 
         }else{
             throw new BadRequestException("Date is not Schedulling!");
@@ -45,9 +45,9 @@ public class SchedulingService {
         schedulingRepository.deleteById(this.findByIdOrThrowBadRequestException(id).getId());
     }
     @Transactional
-    public void replace(SchedulingPutRequestBody schedulingPutRequestBody){
-        Scheduling byIdOrThrowException = this.findByIdOrThrowBadRequestException(schedulingPutRequestBody.getId());
-        Scheduling agendamento = schedulingMapper.toScheduling(schedulingPutRequestBody);
+    public void replace(SchedulingPutDto schedulingPutDto){
+        Scheduling byIdOrThrowException = this.findByIdOrThrowBadRequestException(schedulingPutDto.getId());
+        Scheduling agendamento = schedulingMapper.toScheduling(schedulingPutDto);
         agendamento.setId(byIdOrThrowException.getId());
         this.schedulingRepository.save(agendamento);
     }
@@ -55,7 +55,7 @@ public class SchedulingService {
         return schedulingRepository.findByData(date).size() < 4;
     }
 
-    public void updateStatus(SchedulingUpdateStatusDTO schedulingUpdateStatusDTO){
+    public void updateStatus(SchedulingUpdateStatusDto schedulingUpdateStatusDTO){
         schedulingRepository.updateByStatus(schedulingUpdateStatusDTO.getStatus()
                 , schedulingUpdateStatusDTO.getIdScheduling());
     }

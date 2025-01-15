@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Vehicle;
-import ruandev.com.systemspringboot.dto.Vehicle.VehiclePostRequestBody;
-import ruandev.com.systemspringboot.dto.Vehicle.VehiclePutRequestBody;
+import ruandev.com.systemspringboot.dto.vehicle.VehiclePostDto;
+import ruandev.com.systemspringboot.dto.vehicle.VehiclePutDto;
 import ruandev.com.systemspringboot.service.VehicleService;
 
 @RestController
@@ -22,13 +22,13 @@ public class VehicleController {
     }
 
     @PostMapping
-    public ResponseEntity<Vehicle> save(@Valid @RequestBody VehiclePostRequestBody vehiclePostRequestBody){
-        return new ResponseEntity<>(vehicleService.save(vehiclePostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Vehicle> save(@Valid @RequestBody VehiclePostDto vehiclePostDto){
+        return new ResponseEntity<>(vehicleService.save(vehiclePostDto), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody VehiclePutRequestBody vehiclePutRequestBody){
-        vehicleService.replace(vehiclePutRequestBody);
+    public ResponseEntity<Void> replace(@RequestBody VehiclePutDto vehiclePutDto){
+        vehicleService.replace(vehiclePutDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

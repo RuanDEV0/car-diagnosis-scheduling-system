@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Servico;
+import ruandev.com.systemspringboot.dto.service.ServicoPostDto;
+import ruandev.com.systemspringboot.dto.service.ServicoPutDto;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.ServicoMapper;
 import ruandev.com.systemspringboot.repository.ServicoRepository;
-import ruandev.com.systemspringboot.dto.service.ServicoPostRequestBody;
-import ruandev.com.systemspringboot.dto.service.ServicoPutRequestBody;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public class ServicoService {
         return this.servicoRepository.findAll();
     }
     @Transactional
-    public Servico save(ServicoPostRequestBody servicoPostRequestBody){
-        return this.servicoRepository.save(servicoMapper.toServico(servicoPostRequestBody));
+    public Servico save(ServicoPostDto servicoPostDto){
+        return this.servicoRepository.save(servicoMapper.toServico(servicoPostDto));
     }
 
     public Servico findByIdOrThrowBadRequestException(Long id){
@@ -36,9 +36,9 @@ public class ServicoService {
         this.servicoRepository.deleteById(findByIdOrThrowBadRequestException(id).getId());
     }
 
-    public void replace(ServicoPutRequestBody servicoPutRequestBody){
-        Servico byIdOrThrowException = this.findByIdOrThrowBadRequestException(servicoPutRequestBody.getId());
-        Servico servico = servicoMapper.toServico(servicoPutRequestBody);
+    public void replace(ServicoPutDto servicoPutDto){
+        Servico byIdOrThrowException = this.findByIdOrThrowBadRequestException(servicoPutDto.getId());
+        Servico servico = servicoMapper.toServico(servicoPutDto);
         servico.setId(byIdOrThrowException.getId());
         servicoRepository.save(servico);
     }

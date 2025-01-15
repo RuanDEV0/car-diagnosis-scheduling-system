@@ -7,8 +7,8 @@ import ruandev.com.systemspringboot.domain.Vehicle;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.VehicleMapper;
 import ruandev.com.systemspringboot.repository.VehicleRepository;
-import ruandev.com.systemspringboot.dto.Vehicle.VehiclePostRequestBody;
-import ruandev.com.systemspringboot.dto.Vehicle.VehiclePutRequestBody;
+import ruandev.com.systemspringboot.dto.vehicle.VehiclePostDto;
+import ruandev.com.systemspringboot.dto.vehicle.VehiclePutDto;
 
 @Service
 public class VehicleService {
@@ -18,8 +18,8 @@ public class VehicleService {
     private VehicleMapper vehicleMapper;
 
     @Transactional
-    public Vehicle save(VehiclePostRequestBody vehiclePostRequestBody){
-        return vehicleRepository.save(vehicleMapper.toVehicle(vehiclePostRequestBody));
+    public Vehicle save(VehiclePostDto vehiclePostDto){
+        return vehicleRepository.save(vehicleMapper.toVehicle(vehiclePostDto));
     }
     public void deleteById(long id){
         vehicleRepository.deleteById(findByIdOrThrowBadRequestException(id).getId());
@@ -27,9 +27,9 @@ public class VehicleService {
     public Vehicle findByIdOrThrowBadRequestException(Long id){
         return vehicleRepository.findById(id).orElseThrow(() -> new BadRequestException("vehicle not found!"));
     }
-    public void replace(VehiclePutRequestBody vehiclePutRequestBody){
-        Vehicle savedVehicle = findByIdOrThrowBadRequestException(vehiclePutRequestBody.getId());
-        Vehicle vehicle = vehicleMapper.toVehicle(vehiclePutRequestBody);
+    public void replace(VehiclePutDto vehiclePutDto){
+        Vehicle savedVehicle = findByIdOrThrowBadRequestException(vehiclePutDto.getId());
+        Vehicle vehicle = vehicleMapper.toVehicle(vehiclePutDto);
         vehicle.setId(savedVehicle.getId());
         vehicleRepository.save(vehicle);
     }

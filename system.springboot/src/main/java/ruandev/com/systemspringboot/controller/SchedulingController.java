@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ruandev.com.systemspringboot.domain.Scheduling;
-import ruandev.com.systemspringboot.dto.scheduling.SchedulingPostRequestBody;
-import ruandev.com.systemspringboot.dto.scheduling.SchedulingPutRequestBody;
-import ruandev.com.systemspringboot.dto.scheduling.SchedulingUpdateStatusDTO;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPostDto;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingPutDto;
+import ruandev.com.systemspringboot.dto.scheduling.SchedulingUpdateStatusDto;
 import ruandev.com.systemspringboot.service.SchedulingService;
 import ruandev.com.systemspringboot.util.StatusType;
 
@@ -31,20 +31,20 @@ public class SchedulingController {
         return ResponseEntity.ok(schedulingService.findByIdOrThrowBadRequestException(id));
     }
     @PostMapping
-    public ResponseEntity<Scheduling> save(@Valid @RequestBody SchedulingPostRequestBody schedulingPostRequestBody){
-        return new ResponseEntity<>(schedulingService.save(schedulingPostRequestBody)
+    public ResponseEntity<Scheduling> save(@Valid @RequestBody SchedulingPostDto schedulingPostDto){
+        return new ResponseEntity<>(schedulingService.save(schedulingPostDto)
                 , HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@Valid @RequestBody SchedulingPutRequestBody schedulingPutRequestBody) {
-        schedulingService.replace(schedulingPutRequestBody);
+    public ResponseEntity<Void> replace(@Valid @RequestBody SchedulingPutDto schedulingPutDto) {
+        schedulingService.replace(schedulingPutDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
     @PostMapping(value = "update-status")
-    public ResponseEntity<Void> updateStatus(@Valid SchedulingUpdateStatusDTO schedulingUpdateStatusDTO){
+    public ResponseEntity<Void> updateStatus(@Valid SchedulingUpdateStatusDto schedulingUpdateStatusDTO){
         schedulingService.updateStatus(schedulingUpdateStatusDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

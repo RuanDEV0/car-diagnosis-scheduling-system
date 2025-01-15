@@ -5,7 +5,7 @@ import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
 @Data
-public class SchedulingPutRequestBody {
+public class SchedulingPutDto {
     private Long id;
     private Long idService;
     private LocalDate data;
