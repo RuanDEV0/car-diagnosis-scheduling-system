@@ -71,3 +71,8 @@ div:hover{
     background-color: #1B365D;
     color: white;
 }
+
+.destaque:hover{
+    background-color: #E5E5E5;
+    color: black;
+}
