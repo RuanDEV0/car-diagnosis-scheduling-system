@@ -1,0 +1,32 @@
+div{
+    background-color: #A5945B;
+    color: white;
+    text-align: center;
+    height: 230px;
+    padding-top: 30px;
+    width: 350px;
+    position: sticky;
+    left: 300px;
+}
+.fields{
+    background-color: lightgray;
+    border-style: none;
+    padding-top: 2px;
+}
+
+label{
+    display: block;
+}
+input{
+    display: flexbox;
+}
+.buttonSubmit{
+    margin-top: 20px;
+    width: 160px;
+    background-color: #574B24;
+    border-style: none;
+    border-radius: 3px;
+    color: white;
+    height: 25px;
+    font-size: 15px;
+}

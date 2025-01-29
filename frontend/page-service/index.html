@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <form action="http://localhost:8080/service" method="post">
+            <label for="name">Nome do Serviço </label>
+            <input type="text" id="name" name="name" class="fields">
+
+            <label for="shortDescription">Pequena Descrição</label>
+            <input type="text" id="shortDescription" name="shortDescription" class="fields">
+
+            <label for="description"> Descrição</label>
+            <input type="text" id="description" name="description" class="fields">
+
+            <label for="valueBasic"> Valor Base</label>
+            <input type="text", id="valueBasic", name="valueBasic" class="fields">
+            <br><input type="submit" class="buttonSubmit">
+        </form>
+    </div>
+</body>
+</html>
