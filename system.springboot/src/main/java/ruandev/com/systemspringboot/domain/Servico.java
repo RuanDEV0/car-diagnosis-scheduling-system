@@ -28,7 +28,6 @@ public class Servico {
     @NotEmpty(message = "description is empty")
     private String shortDescription;
     private String description;
-    @NotEmpty(message = "valueBasic is empty")
     private Double valueBasic;
     @ManyToMany(mappedBy = "services", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Scheduling> schedulings = new HashSet<>();
