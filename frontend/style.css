@@ -9,7 +9,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #b7d1a3;
+    background-color: #fff;
 }
 
 .container {
@@ -20,9 +20,10 @@ body {
 
 /* Cabeçalho */
 header {
-    background-color: #697a62; /* Azul Marinho */
-    color: #ffffff;
+    background-color: #1f1f1f; /* Azul Marinho */
+    color: #fff;
     padding: 20px 0;
+    border-bottom:  1px solid #ffffff;
 }
 
 header h1 {
@@ -33,7 +34,8 @@ header h1 {
 
 nav ul {
     list-style: none;
-    text-align: center;
+    text-align: right;
+    margin-right: 80px;
 }
 
 nav ul li {
@@ -42,30 +44,29 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
 
 nav ul li a.btn-login {
-    background-color: #27ae60; /* Verde Esmeralda */
+    background-color: #fa4b00; /* Verde Esmeralda */
     padding: 5px 10px;
     border-radius: 4px;
+    margin-left: 30px;
 }
 
 nav ul li a.btn-login:hover {
-    background-color: #218838; /* Verde mais escuro */
+    background-color: #f75c1a; /* Verde mais escuro */
 }
 
 /* Banner */
 .banner {
-    background-color: #ffffff; /* Cinza Escuro */
+    background-color: #f9fdf9;/* Cinza Escuro */
     color: #333;
     padding: 50px 0;
     text-align: center;
-    margin-top: 60px;
-    width: 40%;
-    left: 50px;
+    margin-top: 210px;
 }
 
 .banner h2 {
@@ -79,7 +80,7 @@ nav ul li a.btn-login:hover {
 }
 
 .banner .btn-agendar {
-    background-color: #27ae60; /* Verde Esmeralda */
+    background-color: #fa4b00; /* Verde Esmeralda */
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
@@ -88,7 +89,7 @@ nav ul li a.btn-login:hover {
 }
 
 .banner .btn-agendar:hover {
-    background-color: #218838; /* Verde mais escuro */
+    background-color: #f75c1a; /* Verde mais escuro */
 }
 
 /* Serviços */
@@ -96,8 +97,7 @@ nav ul li a.btn-login:hover {
     padding: 50px 0;
     background-color: #ffffff;
     text-align: center;
-    width: 40%;
-    margin-top: 50px;
+    margin-top: 80px;
 }
 
 .servicos h2 {
@@ -111,7 +111,7 @@ nav ul li a.btn-login:hover {
 }
 
 .servico-item {
-    background-color: #fff;
+    background-color: #b0bdb0;
     padding: 20px;
     border-radius: 8px;
     width: 30%;
@@ -135,7 +135,7 @@ nav ul li a.btn-login:hover {
 
 /* Rodapé */
 footer {
-    background-color: #2c3e50; /* Azul Marinho */
+    background-color: #1f1f1f; /* Azul Marinho */
     color: #fff;
     padding: 20px 0;
     text-align: center;
