@@ -1,6 +1,6 @@
 package ruandev.com.systemspringboot.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruandev.com.systemspringboot.domain.Servico;
@@ -9,21 +9,25 @@ import ruandev.com.systemspringboot.dto.service.ServicoPutDto;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.ServicoMapper;
 import ruandev.com.systemspringboot.repository.ServicoRepository;
+import ruandev.com.systemspringboot.validation.ServicoValidator;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ServicoService {
-    @Autowired
-    private ServicoRepository servicoRepository;
-    @Autowired
-    private ServicoMapper servicoMapper;
+    private final ServicoRepository servicoRepository;
+    private final ServicoMapper servicoMapper;
+    private final ServicoValidator servicoValidator;
     @Transactional(readOnly = true)
     public List<Servico> listAll(){
         return this.servicoRepository.findAll();
     }
     @Transactional
     public Servico save(ServicoPostDto servicoPostDto){
+        if(servicoValidator.validateByName(servicoPostDto.getName())) {
+            throw new BadRequestException("Service with name exists");
+        }
         return this.servicoRepository.save(servicoMapper.toServico(servicoPostDto));
     }
 

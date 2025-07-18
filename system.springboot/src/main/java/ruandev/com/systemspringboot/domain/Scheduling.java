@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import ruandev.com.systemspringboot.util.StatusType;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +27,8 @@ public class Scheduling {
     private Long id;
     @NotEmpty(message = "date is empty")
     private LocalDate data;
+    @NotEmpty(message = "time is empty")
+    private LocalTime time;
     @NotEmpty(message = "services is empty")
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
@@ -36,7 +39,8 @@ public class Scheduling {
     )
     private Set<Servico> services = new HashSet<>();
     /*to alter type of field status*/
-    private StatusType status;
+    @Enumerated(EnumType.STRING)
+    private StatusType status = StatusType.PENDENTE;
     @ManyToOne()
     @JoinColumn(name = "id_vehicle")
     private Vehicle vehicle;
@@ -44,4 +48,11 @@ public class Scheduling {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_client")
     private Client client;
+
+    @PrePersist
+    private void prePersist() {
+        if(status == null){
+            status = StatusType.PENDENTE;
+        }
+    }
 }
