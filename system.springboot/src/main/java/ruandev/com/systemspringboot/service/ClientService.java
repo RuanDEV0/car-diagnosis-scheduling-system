@@ -10,16 +10,20 @@ import ruandev.com.systemspringboot.dto.client.ClientPutDto;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.ClientMapper;
 import ruandev.com.systemspringboot.repository.ClientRepository;
+import ruandev.com.systemspringboot.validation.ClientValidator;
 
 @Service
 @RequiredArgsConstructor
 public class ClientService {
     private final ClientRepository clientRepository;
-    @Autowired
-    private ClientMapper clientMapper;
+    private final ClientMapper clientMapper;
+    private final ClientValidator clientValidator;
 
     @Transactional
     public Client save(ClientPostDto clientPostDto){
+        if(clientValidator.validate(clientPostDto)){
+            throw new BadRequestException("Client with phone or email registered");
+        }
         return clientRepository.save(clientMapper.toClient(clientPostDto));
     }
     public void deleteById(long id){
@@ -29,7 +33,10 @@ public class ClientService {
         return clientRepository.findById(id).orElseThrow(() -> new BadRequestException("client not found!"));
     }
     public void replace (ClientPutDto clientPutDto){
-        Client savedClient = findByIdOrThrowBadRequestException(clientPutDto.getId());
+        Client savedClient = this.findByIdOrThrowBadRequestException(clientPutDto.getId());
+        if(clientValidator.validate(clientPutDto)){
+            throw new BadRequestException("Client with phone or email registered");
+        }
         Client client = clientMapper.toClient(clientPutDto);
         client.setId(savedClient.getId());
         clientRepository.save(client);
