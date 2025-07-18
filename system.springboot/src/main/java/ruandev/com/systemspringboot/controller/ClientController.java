@@ -1,6 +1,7 @@
 package ruandev.com.systemspringboot.controller;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import ruandev.com.systemspringboot.service.ClientService;
 
 @RestController
 @RequestMapping(value = "/client")
+@RequiredArgsConstructor
 public class ClientController {
-    @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Client> findById(@PathVariable Long id){

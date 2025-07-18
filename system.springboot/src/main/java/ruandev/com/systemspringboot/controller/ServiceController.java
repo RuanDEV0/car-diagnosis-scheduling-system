@@ -1,6 +1,7 @@
 package ruandev.com.systemspringboot.controller;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,33 +15,34 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/service")
+@RequiredArgsConstructor
 public class ServiceController {
-    @Autowired
-    private ServicoService servicoService;
+
+    private final ServicoService servicoService;
 
     @GetMapping
-    public ResponseEntity<List<Servico>> findAll( ){
+    public ResponseEntity<List<Servico>> findAll() {
         return ResponseEntity.ok(servicoService.listAll());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Servico> findById(@PathVariable Long id){
+    public ResponseEntity<Servico> findById(@PathVariable Long id) {
         return ResponseEntity.ok(servicoService.findByIdOrThrowBadRequestException(id));
     }
 
     @PostMapping
-    public ResponseEntity<Servico> save(@Valid @RequestBody ServicoPostDto servicoPostDto){
+    public ResponseEntity<Servico> save(@Valid @RequestBody ServicoPostDto servicoPostDto) {
         return new ResponseEntity<>(servicoService.save(servicoPostDto), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody ServicoPutDto servicoPutDto){
+    public ResponseEntity<Void> replace(@RequestBody ServicoPutDto servicoPutDto) {
         servicoService.replace(servicoPutDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable long id){
+    public ResponseEntity<Void> deleteById(@PathVariable long id) {
         servicoService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
