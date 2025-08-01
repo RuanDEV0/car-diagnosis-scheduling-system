@@ -2,8 +2,8 @@ package ruandev.com.systemspringboot.validation;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ruandev.com.systemspringboot.dto.client.ClientPostDto;
-import ruandev.com.systemspringboot.dto.client.ClientPutDto;
+import ruandev.com.systemspringboot.dto.user.UserPostDto;
+import ruandev.com.systemspringboot.dto.user.UserPutDto;
 import ruandev.com.systemspringboot.repository.ClientRepository;
 
 @RequiredArgsConstructor
@@ -11,10 +11,10 @@ import ruandev.com.systemspringboot.repository.ClientRepository;
 public class ClientValidator {
     private final ClientRepository clientRepository;
 
-    public boolean validate(ClientPostDto client) {
+    public boolean validate(UserPostDto client) {
         return clientRepository.existsByPhoneAndEmailIgnoreCase(client.getPhone(), client.getEmail());
     }
-    public boolean validate(ClientPutDto client){
+    public boolean validate(UserPutDto client){
         return clientRepository.existsByPhoneAndEmailIgnoreCase(client.getPhone(), client.getEmail());
     }
 

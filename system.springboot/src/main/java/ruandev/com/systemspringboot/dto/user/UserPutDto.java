@@ -1,11 +1,11 @@
-package ruandev.com.systemspringboot.dto.client;
+package ruandev.com.systemspringboot.dto.user;
 
 import lombok.Data;
 import lombok.Builder;
 
 @Builder
 @Data
-public class ClientPutDto {
+public class UserPutDto {
     private Long id;
     private String name;
     private String phone;

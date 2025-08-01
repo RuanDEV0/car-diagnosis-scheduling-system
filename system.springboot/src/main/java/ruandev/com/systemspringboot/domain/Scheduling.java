@@ -2,7 +2,6 @@ package ruandev.com.systemspringboot.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,6 @@ import ruandev.com.systemspringboot.util.StatusType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -46,8 +44,8 @@ public class Scheduling {
     private Vehicle vehicle;
     @NotEmpty(message = "client is empty")
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_client")
-    private Client client;
+    @JoinColumn(name = "id_user")
+    private User user;
 
     @PrePersist
     private void prePersist() {

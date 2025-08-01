@@ -1,12 +1,12 @@
 package ruandev.com.systemspringboot.mapper;
 
 import org.mapstruct.Mapper;
-import ruandev.com.systemspringboot.domain.Client;
-import ruandev.com.systemspringboot.dto.client.ClientPostDto;
-import ruandev.com.systemspringboot.dto.client.ClientPutDto;
+import ruandev.com.systemspringboot.domain.User;
+import ruandev.com.systemspringboot.dto.user.UserPostDto;
+import ruandev.com.systemspringboot.dto.user.UserPutDto;
 
 @Mapper(componentModel = "spring")
 public interface ClientMapper {
-     Client toClient(ClientPostDto clientPostDto);
-     Client toClient(ClientPutDto clientPutDto);
+     User toClient(UserPostDto userPostDto);
+     User toClient(UserPutDto userPutDto);
 }
