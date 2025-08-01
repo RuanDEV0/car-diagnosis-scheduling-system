@@ -6,7 +6,7 @@ import ruandev.com.systemspringboot.dto.user.UserPostDto;
 import ruandev.com.systemspringboot.dto.user.UserPutDto;
 
 @Mapper(componentModel = "spring")
-public interface ClientMapper {
+public interface UserMapper {
      User toClient(UserPostDto userPostDto);
      User toClient(UserPutDto userPutDto);
 }

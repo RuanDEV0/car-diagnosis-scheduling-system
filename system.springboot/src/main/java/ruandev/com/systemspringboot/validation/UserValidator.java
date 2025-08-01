@@ -4,18 +4,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ruandev.com.systemspringboot.dto.user.UserPostDto;
 import ruandev.com.systemspringboot.dto.user.UserPutDto;
-import ruandev.com.systemspringboot.repository.ClientRepository;
+import ruandev.com.systemspringboot.repository.UserRepository;
 
 @RequiredArgsConstructor
 @Component
-public class ClientValidator {
-    private final ClientRepository clientRepository;
+public class UserValidator {
+    private final UserRepository userRepository;
 
     public boolean validate(UserPostDto client) {
-        return clientRepository.existsByPhoneAndEmailIgnoreCase(client.getPhone(), client.getEmail());
+        return userRepository.existsByPhoneAndEmailIgnoreCase(client.getPhone(), client.getEmail());
     }
     public boolean validate(UserPutDto client){
-        return clientRepository.existsByPhoneAndEmailIgnoreCase(client.getPhone(), client.getEmail());
+        return userRepository.existsByPhoneAndEmailIgnoreCase(client.getPhone(), client.getEmail());
     }
 
 }

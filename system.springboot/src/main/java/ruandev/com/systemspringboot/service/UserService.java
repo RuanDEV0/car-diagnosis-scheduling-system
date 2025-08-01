@@ -9,40 +9,40 @@ import ruandev.com.systemspringboot.domain.User;
 import ruandev.com.systemspringboot.dto.user.UserPostDto;
 import ruandev.com.systemspringboot.dto.user.UserPutDto;
 import ruandev.com.systemspringboot.exception.BadRequestException;
-import ruandev.com.systemspringboot.mapper.ClientMapper;
-import ruandev.com.systemspringboot.repository.ClientRepository;
-import ruandev.com.systemspringboot.validation.ClientValidator;
+import ruandev.com.systemspringboot.mapper.UserMapper;
+import ruandev.com.systemspringboot.repository.UserRepository;
+import ruandev.com.systemspringboot.validation.UserValidator;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final ClientRepository clientRepository;
-    private final ClientMapper clientMapper;
-    private final ClientValidator clientValidator;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final UserValidator userValidator;
     private final PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     @Transactional
     public User save(UserPostDto userPostDto){
-        if(clientValidator.validate(userPostDto)){
+        if(userValidator.validate(userPostDto)){
             throw new BadRequestException("Client with phone or email registered");
         }
         String passwordEncoded = passwordEncoder.encode(userPostDto.getPassword());
         userPostDto.setPassword(passwordEncoded);
-        return clientRepository.save(clientMapper.toClient(userPostDto));
+        return userRepository.save(userMapper.toClient(userPostDto));
     }
     public void deleteById(long id){
-        clientRepository.deleteById(this.findByIdOrThrowBadRequestException(id).getId());
+        userRepository.deleteById(this.findByIdOrThrowBadRequestException(id).getId());
     }
     public User findByIdOrThrowBadRequestException(Long id) {
-        return clientRepository.findById(id).orElseThrow(() -> new BadRequestException("client not found!"));
+        return userRepository.findById(id).orElseThrow(() -> new BadRequestException("client not found!"));
     }
     public void replace (UserPutDto userPutDto){
         User savedUser = this.findByIdOrThrowBadRequestException(userPutDto.getId());
-        if(clientValidator.validate(userPutDto)){
+        if(userValidator.validate(userPutDto)){
             throw new BadRequestException("Client with phone or email registered");
         }
-        User user = clientMapper.toClient(userPutDto);
+        User user = userMapper.toClient(userPutDto);
         user.setId(savedUser.getId());
-        clientRepository.save(user);
+        userRepository.save(user);
     }
 }

@@ -13,7 +13,7 @@ import ruandev.com.systemspringboot.service.UserService;
 @RestController
 @RequestMapping(value = "/client")
 @RequiredArgsConstructor
-public class ClientController {
+public class UserController {
     private final UserService userService;
 
     @GetMapping(value = "/{id}")
