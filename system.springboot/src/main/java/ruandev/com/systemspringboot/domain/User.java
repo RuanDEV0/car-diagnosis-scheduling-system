@@ -26,6 +26,11 @@ public class User {
     @NotEmpty(message = "password is empty")
     private String password;
     @NotEmpty(message = "roles is empty")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_role")
+    )
     private Set<Role> roles;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Scheduling> schedulingList;
