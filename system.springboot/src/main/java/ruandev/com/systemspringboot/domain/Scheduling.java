@@ -36,7 +36,6 @@ public class Scheduling {
 
     )
     private Set<Servico> services = new HashSet<>();
-    /*to alter type of field status*/
     @Enumerated(EnumType.STRING)
     private StatusType status = StatusType.PENDENTE;
     @ManyToOne()

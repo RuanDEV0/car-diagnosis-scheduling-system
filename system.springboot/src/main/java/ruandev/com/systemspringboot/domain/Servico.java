@@ -28,8 +28,10 @@ public class Servico {
     @NotEmpty(message = "description is empty")
     private String shortDescription;
     private String description;
-    @NotEmpty(message = "valueBasic is empty")
-    private Double valueBasic;
+    @NotEmpty(message = "value is empty")
+    private Double value;
+    @NotEmpty
+    private Integer durationInMinutes;
     @ManyToMany(mappedBy = "services", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Scheduling> schedulings = new HashSet<>();
 }
