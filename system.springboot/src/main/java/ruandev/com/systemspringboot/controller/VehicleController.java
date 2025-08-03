@@ -12,7 +12,7 @@ import ruandev.com.systemspringboot.dto.vehicle.VehiclePutDto;
 import ruandev.com.systemspringboot.service.VehicleService;
 
 @RestController
-@RequestMapping(value = "/vehicle")
+@RequestMapping(value = "/vehicles")
 @RequiredArgsConstructor
 public class VehicleController {
 

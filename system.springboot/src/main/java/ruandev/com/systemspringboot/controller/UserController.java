@@ -11,7 +11,7 @@ import ruandev.com.systemspringboot.dto.user.UserPutDto;
 import ruandev.com.systemspringboot.service.UserService;
 
 @RestController
-@RequestMapping(value = "/client")
+@RequestMapping(value = "/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;

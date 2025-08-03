@@ -16,7 +16,7 @@ import ruandev.com.systemspringboot.service.SchedulingService;
 import ruandev.com.systemspringboot.util.StatusType;
 
 @RestController
-@RequestMapping(value = "/scheduling")
+@RequestMapping(value = "/schedulings")
 @RequiredArgsConstructor
 public class SchedulingController {
 
@@ -46,12 +46,11 @@ public class SchedulingController {
     }
 
 
-    @PostMapping(value = "update-status")
+    @PostMapping(value = "/update-status")
     public ResponseEntity<Void> updateStatus(@Valid SchedulingUpdateStatusDto schedulingUpdateStatusDTO) {
         schedulingService.updateStatus(schedulingUpdateStatusDTO);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-
     @DeleteMapping
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         schedulingService.deleteById(id);
