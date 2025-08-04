@@ -21,10 +21,6 @@ public class UserController {
         return ResponseEntity.ok(userService.findByIdOrThrowBadRequestException(id));
     }
 
-    @PostMapping
-    public ResponseEntity<User> save(@Valid @RequestBody UserPostDto userPostDto){
-        return new ResponseEntity<>(userService.save(userPostDto), HttpStatus.CREATED);
-    }
 
     @PutMapping
     public ResponseEntity<Void> replace(@RequestBody UserPutDto userPutDto){

@@ -31,7 +31,7 @@ public class User {
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_role")
     )
-    private Set<Role> roles;
+    private List<Role> roles;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Scheduling> schedulingList;
 }
