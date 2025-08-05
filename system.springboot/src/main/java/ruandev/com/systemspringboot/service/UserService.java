@@ -38,12 +38,12 @@ public class UserService {
         return new RecoveryJwtTokenDto(jwtTokenService.generateToken(userDetails));
     }
     @Transactional
-    public User save(UserPostDto userPostDto){
+    public void save(UserPostDto userPostDto){
         if(userValidator.validate(userPostDto)){
             throw new BadRequestException("Client with phone or email registered");
         }
         userPostDto.setPassword(securityConfiguration.passwordEncoder().encode(userPostDto.getPassword()));
-        return userRepository.save(userMapper.toClient(userPostDto));
+        userRepository.save(userMapper.toClient(userPostDto));
     }
     public void deleteById(long id){
         userRepository.deleteById(this.findByIdOrThrowBadRequestException(id).getId());
