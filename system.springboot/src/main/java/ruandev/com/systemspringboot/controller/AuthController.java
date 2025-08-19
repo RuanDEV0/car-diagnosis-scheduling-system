@@ -1,4 +1,4 @@
-package ruandev.com.systemspringboot.auth;
+package ruandev.com.systemspringboot.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

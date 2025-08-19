@@ -1,7 +1,6 @@
 package ruandev.com.systemspringboot.handler;
 
 import io.micrometer.common.lang.Nullable;
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ import ruandev.com.systemspringboot.exception.ValidationExceptionDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
