@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import ruandev.com.systemspringboot.exception.BadRequestException;
-import ruandev.com.systemspringboot.exception.BadRequestExceptionDetails;
-import ruandev.com.systemspringboot.exception.ExceptionDetails;
-import ruandev.com.systemspringboot.exception.ValidationExceptionDetails;
+import ruandev.com.systemspringboot.exception.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,6 +20,17 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler{
+    @ExceptionHandler(AuthenticationFailedException.class)
+    public ResponseEntity<AuthenticationFailedExceptionDetails> handlerAuthenticationFailedException(AuthenticationFailedException e) {
+        return new ResponseEntity<>(AuthenticationFailedExceptionDetails.builder()
+                .details(e.getMessage())
+                .title("Authentication failed exception, check documentation")
+                .developerMessage(e.getClass().getName())
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .timestamp(LocalDateTime.now())
+                .build(), HttpStatus.UNAUTHORIZED);
+    }
+
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<BadRequestExceptionDetails> handlerBadRequestException(BadRequestException badRequestException){
         return new ResponseEntity<>(BadRequestExceptionDetails.builder()

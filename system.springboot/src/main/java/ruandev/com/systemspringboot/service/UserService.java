@@ -11,6 +11,7 @@ import ruandev.com.systemspringboot.dto.RecoveryJwtTokenDto;
 import ruandev.com.systemspringboot.dto.user.LoginUserDto;
 import ruandev.com.systemspringboot.dto.user.UserPostDto;
 import ruandev.com.systemspringboot.dto.user.UserPutDto;
+import ruandev.com.systemspringboot.exception.AuthenticationFailedException;
 import ruandev.com.systemspringboot.exception.BadRequestException;
 import ruandev.com.systemspringboot.mapper.UserMapper;
 import ruandev.com.systemspringboot.repository.UserRepository;
@@ -33,6 +34,11 @@ public class UserService {
                 new UsernamePasswordAuthenticationToken(loginUserDto.email(), loginUserDto.password());
         Authentication authenticate =
                 authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+        if(!authenticate.isAuthenticated()) {
+            throw new AuthenticationFailedException("email ou senha incorretos");
+        }
+
         UserDetailsImpl userDetails = (UserDetailsImpl) authenticate.getPrincipal();
 
         return new RecoveryJwtTokenDto(jwtTokenService.generateToken(userDetails));
